@@ -1,0 +1,259 @@
+<include target="_config.html" />
+
+
+
+
+<div class="board-wrapper" style=" max-width:500px; margin:0 auto; background:#fff;">
+
+	<div class="absc article-write rs" style="background:#ededed;">
+		<form action="./" method="post" onsubmit="return procFilter(this, window.insert)" class="write-form">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="document_srl" value="{$document_srl}" />
+			<input type="hidden" name="content"  value=".">
+
+		<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    //라디오 요소처럼 동작시킬 체크박스 그룹 셀렉터
+    $('input[type="checkbox"][class="iCheck"]').click(function(){
+        //클릭 이벤트 발생한 요소가 체크 상태인 경우
+        if ($(this).prop('checked')) {
+            //체크박스 그룹의 요소 전체를 체크 해제후 클릭한 요소 체크 상태지정
+            $('input[type="checkbox"][class="iCheck"]').prop('checked', false);
+            $(this).prop('checked', true);
+        }
+    });
+});
+</script>
+
+
+
+<div style="width:100%; height:50px; "></div>
+<span style="margin-left: 2%; font-size:40pt; letter-spacing: 2px; padding:10px; font-family:'Noto Sans Korean'; color:#465670  ;"><b>
+EVENT</b></span>
+<center>
+<div style="float:left; width:10%; height:50px; margin-top: 40px; margin-left:5%; margin-right:5%; ">
+<img src="https://owaw.net/files/attach/filebox/575/575.png"  style="width:80%; height:auto; margin-top:10px;"/>
+</div>
+<div style="float:left; width:75%; height:50px;  margin-top: 40px;  background-color:#fff;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+	<input style="font-size:18pt; text-align: center; vertical-align: middle; padding-top:14px; " placeholder="YYYY-MM-DD"  type="date" name="extra_vars1" id="when" value="{zdate(str_replace('-','',$oDocument->getExtraEidValue("when")), 'Y-m-d')}" cond="$oDocument->getExtraEidValueHTML('when')" />
+	<input style="font-size:18pt; text-align: center; vertical-align: middle; padding-top:14px; " placeholder="YYYY-MM-DD"  type="date" name="extra_vars1" id="when" cond="!$oDocument->getExtraEidValueHTML('when')" />
+</div><br /><br /><br />
+
+	<div style="float:left;width:20%; margin-top:30px; margin-left:20%; margin-right:2%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+	<select name="extra_vars4" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+			<option class="1" value="1" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='1'">01시</option>
+			<option class="2" value="2" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='2'">02시</option>
+			<option class="3" value="3" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='3'">03시</option>
+			<option class="4" value="4" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='4'">04시</option>
+			<option class="5" value="5" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='5'">05시</option>
+			<option class="6" value="6" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='6'">06시</option>
+			<option class="7" value="7" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='7'">07시</option>
+			<option class="8" value="8" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='8'">08시</option>
+			<option class="9" value="9" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='9'">09시</option>
+			<option class="10" value="10" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='10'">10시</option>
+			<option class="11" value="11" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='11'">11시</option>
+			<option class="12" value="12" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='12'">12시</option>
+	</select></div>
+	<div style="float:left;width:20%; margin-top:30px; margin-right:2%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+	<select name="extra_vars5" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+			<option class="00" value="00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Min')==='00'">00분</option>
+			<option class="30" value="30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Min')==='30'">30분</option>
+	</select></div>
+
+	<div style="float:left;width:20%; margin-top:30px; margin-right:6%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+	<select name="extra_vars6" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+			<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='AM'">AM</option>
+			<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='PM'">PM</option>
+	</select></div>
+	<span class="fas fa-arrow-down" style="float:left; color:#dcdcdc; width:5%; margin-right:5%; margin-top:36px; margin-bottom:8px;"></span>
+<br />
+
+<div style="float:left;width:20%; margin-top:30px; margin-left:20%; margin-right:2%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+<select name="extra_vars7" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+		<option class="1" value="1" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='1'">01시</option>
+		<option class="2" value="2" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='2'">02시</option>
+		<option class="3" value="3" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='3'">03시</option>
+		<option class="4" value="4" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='4'">04시</option>
+		<option class="5" value="5" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='5'">05시</option>
+		<option class="6" value="6" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='6'">06시</option>
+		<option class="7" value="7" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='7'">07시</option>
+		<option class="8" value="8" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='8'">08시</option>
+		<option class="9" value="9" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='9'">09시</option>
+		<option class="10" value="10" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='10'">10시</option>
+		<option class="11" value="11" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='11'">11시</option>
+		<option class="12" value="12" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='12'">12시</option>
+</select></div>
+
+<div style="float:left;width:20%; margin-top:30px; margin-right:2%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+<select name="extra_vars8" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+		<option class="00" value="00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Min2')==='00'">00분</option>
+		<option class="30" value="30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Min2')==='30'">30분</option>
+</select></div>
+
+<div style="float:left;width:20%; margin-top:30px; margin-right:6%;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:2px; ">
+<select name="extra_vars9" style="float:left; background: #fff; width: 100%; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+		<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='AM'">AM</option>
+		<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='PM'">PM</option>
+</select></div>
+
+<hr style="border-top: 1px solid #dcdcdc; margin-top:30px; float:left; margin-left:20%;width:75%;"/>
+
+
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div style="float:left; width:10%; height:50px;  margin-top: 30px; margin-left:5%; margin-right:5%; ">
+<img src="https://owaw.net/files/attach/filebox/574/574.png"  style="width:80%; height:auto; margin-top:10px;"/>
+</div>
+<div style="float:left; width:75%; height:50px;  margin-top: 30px; background-color:#fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="누구를 만났나요?"  type="text" name="extra_vars2" id="Who" value="{$oDocument->getExtraEidValueHTML('Who')}" cond="$oDocument->getExtraEidValueHTML('Who')" />
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="누구를 만났나요?"  type="text" name="extra_vars2" id="Who" cond="!$oDocument->getExtraEidValueHTML('Who')" />
+</div>
+<br />
+<div style="float:left; width:10%; height:50px; margin-left:5%; margin-right:5%; margin-top: 30px;">
+<img src="https://owaw.net/files/attach/filebox/573/573.png"  style="width:80%; height:auto; margin-top:10px;"/>
+</div>
+<div style="float:left; width:75%; height:50px;background-color:#fff; margin-top: 30px; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="무엇을 했나요?"  type="text" name="extra_vars3" id="What" value="{$oDocument->getExtraEidValueHTML('What')}" cond="$oDocument->getExtraEidValueHTML('What')" />
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="무엇을 했나요?"  type="text" name="extra_vars3" id="What" cond="!$oDocument->getExtraEidValueHTML('What')" />
+</div>
+<br />
+<div style="float:left; width:10%; height:50px; margin-left:5%; margin-right:5%;  margin-top: 30px;">
+<img src="https://owaw.net/files/attach/filebox/572/572.png"  style="width:80%; height:auto; margin-top:10px;"/>
+</div>
+<div style="float:left; width:75%; height:50px;background-color:#fff;  margin-top: 30px; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="얼마를 썼나요?"  type="number"inputmode="numeric" pattern="[0-9]*" name="extra_vars10" id="Money" value="{$oDocument->getExtraEidValueHTML('Money')}" cond="$oDocument->getExtraEidValueHTML('Money')" />
+<input style="width:100%; font-size:16pt; text-align: center; vertical-align: middle; padding-top:4px; " placeholder="얼마를 썼나요?"  type="number" inputmode="numeric" pattern="[0-9]*" name="extra_vars10" id="Money" cond="!$oDocument->getExtraEidValueHTML('Money')" />
+</div>
+<br /><br /><br /><br /><br /><br />
+
+<hr style="border-top: 1px solid #dcdcdc; margin-top:34px; float:left; margin-left:20%;width:75%;"/>
+
+
+
+<div style="float:left ;width:72%; height: 26px; margin-top:30px; margin-left:20%;background:#fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 6px;  padding-top:7px; ">
+<select name="extra_vars11" style="float:left ;  width:100%; background:#fff; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#bcbcbc ;">
+		<option class="스티커" value="스티커" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='스티커'">스티커</option>
+		<option class="좋아요" value="좋아요" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='좋아요'">좋아요</option>
+		<option class="슬퍼요" value="슬퍼요" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='슬퍼요'">슬퍼요</option>
+		<option class="아파요" value="아파요" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='아파요'">아파요</option>
+		<option class="브이" value="브이" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='브이'">브이</option>
+		<option class="영화" value="영화" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='영화'">영화</option>
+		<option class="여행" value="여행" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='여행'">여행</option>
+		<option class="생일" value="생일" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='생일'">생일</option>
+		<option class="과소비" value="과소비" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='과소비'">과소비</option>
+		<option class="기념일" value="기념일" selected="selected"|cond="$oDocument->getExtraEidValueHTML('sticker')==='기념일'">기념일</option>
+</select></div>
+
+
+
+
+
+
+			<div class="wf-section wfs-header clear">
+				<div class="wfsh-category" cond="$module_info->use_category=='Y'">
+					<h3 class="wf-section-title">{$lang->category}</h3>
+					<select id="category" name="category_srl">
+						<!--@if($mi->writeform_category_default=='')-->
+							<option value="">{$lang->no_category}</option>
+						<!--@end-->
+						<option loop="$category_list => $val" disabled="disabled"|cond="!$val->grant" value="{$val->category_srl}" selected="selected"|cond="$val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl')">
+							{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title}
+						</option>
+					</select>
+				</div>
+				<div class="wfsh-title" style="width: 100%; display:none;"|cond="$module_info->use_category!='Y'">
+					<span class="fas fa-caret-right" style="float:left; width:5%; margin-top:20px; color:#220f46"></span>
+					<input cond="$oDocument->getTitleText()" type="text" name="title" class="wf-input" title="{$lang->title}" id="What" value="메모" cond="$oDocument->getExtraEidValueHTML('What')" style=" text-align: center; float:left; width:90%; border-bottom:2px solid #ddd; color:#555;"/>
+					<input cond="!$oDocument->getTitleText()" type="text" name="title" class="wf-input" title="{$lang->title}" this.value='' id="What" value="메모" style=" text-align: center; float:left; width:90%; border-bottom:2px solid #ddd; color:#555;" />
+					<span class="fas fa-caret-left" style="float:left; width:5%; margin-top:20px; color:#220f46"></span>
+
+				</div>
+
+			</div>
+</center>
+
+
+
+			<div class="wf-section wfs-editor" style="display:none;">
+				{$oDocument->getEditor()}
+			</div>
+			<div class="wf-section wfs-author clear" cond="!$is_logged">
+				<span class="non-member-input">
+					<span>{$lang->writer}</span><input type="text" name="nick_name" id="userName" class="iText userName"  value="{htmlspecialchars($oDocument->get('nick_name'))}" placeholder="{$lang->writer}" />
+				</span><span class="non-member-input">
+					<span>{$lang->password}</span><input type="password" name="password" id="userPw" class="iText userPw" placeholder="{$lang->password}" />
+				</span>
+			</div>
+			<div>
+
+
+
+<br /><br />
+<div style="float:left; width:10%; height:50px;  margin-top: 10px; margin-left:4%; margin-right:5%; ">
+		<a class="fas fa-trash-alt" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','yves','')}" style=" font-size:20pt;  color:#3F4963; padding:6px; padding-left:10px; padding-right:10px;"></a>
+</div>
+				<span class="item" cond="$oDocument->get('document_srl') && $module_info->update_log == 'Y'">
+					<label for="reason_update" class="iLabel">{$lang->reason_update}</label>
+					<input type="text" name="reason_update" id="reason_update" value="" class="iText" style="width:300px" title="reason update" />
+				</span>
+			</div>
+			<div class="wf-section write_captcha" cond="$captcha">
+				{$captcha}
+			</div><center>
+			<div class="wf-section wfs-tool clear">
+				<button id="cmd_reg" type="submit"  onclick="correctColorValue()" class="eq button button-rounded button-shadow" style="color:#aaa; border: solid 1px #dedede; float: left; width: 75%; font-size:20px !important; background:#fff !important;">END</button>
+			</div>
+		</center>
+<br /><Br />
+		</form>
+	</div>
+</div>
+
+
+
+
+<style>
+	@media screen and (max-width: 768px) {
+		.xefu-dropzone-message{
+			display: none !important;
+		}
+		.upload_info {
+			display: inline-block !important;
+			margin: 0 !important;
+			margin-left: 5px !important;
+		}
+	}
+
+
+	  table {
+
+	    border-right: 2px solid #fff;
+	    border-collapse: collapse;
+	  }
+		th, td {
+			text-align: center;
+			vertical-align: middle;
+;
+	  }
+		input{
+		-webkit-appearance: none;
+    text-overflow: ellipsis;
+    background: none !important; border: none; outline: none;
+    display: block;
+    font-size: 14px; font-weight:300;
+
+	width:200px; height:54px; padding:8px 40px 8px 0; line-height:54px;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+</style>
+
+<script src="assets/jscolor.js"></script>
+<load target="assets/js/spectrum.js" />

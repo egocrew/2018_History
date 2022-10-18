@@ -1,0 +1,57 @@
+<div class="fl">
+	<input type="checkbox" id="modal-search" class="ab-modal" />
+	<label for="modal-search" class="ab-btn">
+		<span>{$lang->cmd_search}</span>
+	</label>
+	<span class="ab-order-form">
+		<a class="ab-btn" onclick="jQuery('#ab_order_form_{$toolLoc}').toggleClass('show');jQuery('.ab-order-form-box-bg.{$toolLoc}').toggleClass('show');">{$lang->order}</a>
+		<!-- Order Popup -->
+			<div id="ab_order_form_{$toolLoc}" class="ab-order-form-box {$toolLoc}">
+				<ul>
+					<li><a href="{getUrl('sort_index','regdate','order_type',$order_type)}" class="ab-btn">{$lang->order_date}</a></li>
+					<li><a href="{getUrl('sort_index','readed_count','order_type',$order_type)}" class="ab-btn">{$lang->order_readed}</a></li>
+					<li cond="$val->type=='voted_count' && $val->idx==-1"><a href="{getUrl('sort_index','voted_count','order_type',$order_type)}" class="ab-btn">{$lang->order_voted}</a></li>
+					<li><a href="{getUrl('sort_index','comment_count','order_type',$order_type)}" class="ab-btn">{$lang->order_comment}</a></li>
+				</ul>
+			</div>
+			<div class="ab-order-form-box-bg {$toolLoc}" onclick="jQuery('#ab_order_form_{$toolLoc}').toggleClass('show');jQuery(this).toggleClass('show');"></div>
+		<!--/Order Popup -->
+	</span>
+	<!-- Search Modal -->
+		<label for="modal-search" class="ab-modal-bg"></label>
+		<div class="ab-modal-content">
+			<label for="modal-search" class="close">
+				<img class="ic" src="../assets/images/ic-close.svg" />
+			</label>
+			<header>
+				<p>{$lang->cmd_search}</p>
+			</header>
+			<article class="content">
+			<!-- Search Box -->
+				<div id="search_box" class="clear">
+					<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" no-error-return-url="true">
+						<input type="hidden" name="vid" value="{$vid}" />
+						<input type="hidden" name="mid" value="{$mid}" />
+						<input type="hidden" name="category" value="{$category}" />
+						<div class="search-form">
+							<select name="search_target">
+								<option loop="$search_option=>$key,$val" value="{$key}" selected="selected"|cond="$search_target==$key">{$val}</option>
+							</select>
+							<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" placeholder="{$lang->input_keyword}" />
+						</div>
+					</form>
+				</div>
+			</article>
+			<footer cond="$ddd">
+				<a href="http://geekstudios.co" target="_parent" class="button success">Accept</a>
+				<label for="modal-search" class="button danger">Decline</label>
+			</footer>
+		</div>
+	<!--/Search Modal -->
+</div>
+
+<div class="fr">
+	<a href="{getUrl('','module','document','act','dispDocumentManageDocument')}" class="ab-btn" onclick="popopen(this.href,'manageDocument'); return false;" cond="$grant->manager">{$lang->cmd_manage_document}</a>
+	<a href="{getUrl('act','dispBoardAdminBoardInfo')}" class="ab-btn" cond="$grant->manager">{$lang->cmd_setup}</a>
+	<a cond="$mi->write_btn_show == '' || ($mi->write_btn_show == 'c' && $grant->write_document)" <!--@if($mi->writeform_category_disable=='')-->href="{getUrl('act','dispBoardWrite','document_srl','')}"<!--@else-->href="{getUrl('act','dispBoardWrite','category','','document_srl','')}"<!--@end--> class="ab-btn ab-point-color<!--@if(!$grant->write_document)--> ab-disabled<!--@end-->"<!--@if(!$grant->write_document)--> onclick="alert('{$lang->msg_not_permitted}'); return false;"<!--@end-->>{$lang->cmd_write}</a>
+</div>

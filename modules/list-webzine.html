@@ -1,0 +1,849 @@
+<link href="https://fonts.googleapis.com/css?family=Amita:700|Gothic+A1:600" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gaegu:300,400,700" rel="stylesheet">
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+
+<center>
+
+	<div style="width:100%; max-width: 500px; height:51px;  background: #f9f9f9; border-bottom:1px solid #ededed;">
+
+		<a href="https://owaw.net/?act=dispMemberLogout">
+	<div style="float:left;  width: 50px; height: 50px; padding-top:15px; margin-left:10px; border-right:1px solid #ededed; border-left:1px solid #ededed;">
+		<span class="fas fa-sign-out-alt" style="color:#ededed;font-size:20px;"></span>
+
+	</div>
+	</a>
+
+
+		<a href="https://owaw.net/tree2">
+		<div style="float:right; width:50px; height:50px; padding-top:15px; margin-right:10px; border-right:1px solid #ededed;">
+					<span class="fas fa-gift" style="color:#ededed;font-size:20px;"></span>
+		</div></a>
+
+		<a href="https://owaw.net/history">
+		<div style="float:right; width:50px; height:50px;  padding-top:15px;  border-right:1px solid #ededed;">
+					<span class="fas fa-anchor" style="color:#465670;font-size:20px;"></span>
+		</div></a>
+
+		<a href="https://owaw.net/loviary">
+		<div style="float:right; width:50px; height:50px;  padding-top:15px;  border-right:1px solid #ededed; border-left:1px solid #ededed;">
+					<span class="fas fa-heartbeat" style="color:#ededed;font-size:20px;"></span>
+		</div></a>
+
+	</div>
+</center>
+
+<div cond="$notice_list" class="ab-webzine">
+	<div class="wz-item notice<!--@if($document_srl==$document->document_srl)--> active<!--@end-->" loop="$notice_list=>$no,$document">
+		{@
+		$oModuleModel = &getModel('module');
+		$mi_temp = getModel('module')->getModuleInfoByDocumentSrl($document->document_srl);
+		$grant_temp = $oModuleModel->getGrant($mi_temp, $logged_info);
+		}
+		<a class="link" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl)}"<!--@if(!$grant_temp->view)--> onclick="alert('{$lang->msg_not_permitted}'); return false;"<!--@end-->></a>
+		<div class="wz-item-inner clear">
+			<div class="wz-item-header">
+				<include target="fn_category.html" /><span class="title"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle($mi->list_title_cut)}</a></span><a cond="$document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment" class="commentNum ab-point-color" title="{$lang->comment}">{$document->getCommentCount()}</a>
+				<include cond="$showIcon" target="print_icon.html" />
+			</div>
+			<div cond="$showNoticeMeta" class="wz-item-meta">
+				<include target="print_meta.html" />
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="logo" style="width:100%; height:110px; background: #fff; border-bottom: 1px solid #ddd;">
+
+	<a href="https://owaw.net/index.php?mid=history">
+	<div style="float:left;  width: 85%; height: 50px; margin-left: 2%; margin-top: 30px; text-align: left;">
+			<img src="https://owaw.net/files/attach/filebox/601/601.png" width="200px;";>
+	</div>
+	</a>
+	<a href="https://owaw.net/index.php?mid=history&act=dispBoardWrite">
+	<div style="float:right;  width: 10%; height: 60px; text-align: left;">
+			<span class="fas fa-plus-circle" style=" color:#3F4963; font-size: 20px; margin-top: 58px;"></span>
+	</div>
+	</a>
+
+</div>
+<div style="width:100%; height:51px; padding-top: 12px; background:#f9f9f9; border-bottom:1px solid #ddd;">
+	<a href="https://owaw.net/history">
+	<div style="float: left; width: 26px; height: 26px; margin-left: 4%; background: #3F4963; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px; padding-top:4px;">
+	<span style=" width: 17px; height: 21px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px;  font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
+	All
+	</span></div></a>
+
+
+
+	<div style="float: right; width:65px; height: 26px; margin-right: 4%; background: #3F4963; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px;  padding-top:3px;">
+		<select onchange="if(this.value) location.href=(this.value);" style=" background: #3F4963;  width:57px; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
+	<option>STICKER</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=스티커">없음</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=좋아요">좋아요</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=슬퍼요">슬퍼요</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=아파요">아파요</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=브이">브이</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=여행">여행</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=영화">영화</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=생일">생일</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=과소비">과소비</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars11&search_keyword=기념일">기념일</option>
+
+	</select></div>
+
+	<div style="float: right; width: 58px; height: 26px; margin-right: 3%; background: #3F4963;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;  padding-left: 4px; padding-top:3px;">
+		<select onchange="if(this.value) location.href=(this.value);" style="background: #3F4963;   width: 50px; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px;  font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
+	<option>MONTH</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-01">1월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-02">2월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-03">3월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-04">4월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-05">5월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-06">6월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-07">7월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-08">8월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-09">9월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-10">10월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-11">11월</option>
+	<option value="https://owaw.net/?_filter=search&act=&vid=&mid=history&category=&search_target=extra_vars1&search_keyword=2018-12">12월</option>
+	</select></div>
+
+
+
+
+
+</div>
+
+<div cond="$document_list" class="clear ab-webzine<!--@if($listStyle == 'masonry')--> masonry<!--@end-->" style="border: none !important; max-width:500px !important; margin:0px auto; background:#ededed;">
+	<div cond="$listStyle == 'masonry' && $thumbType == 'ratio'" class="ms-sizer"></div>
+	<div class="wz-item<!--@if($document_srl==$document->document_srl)--> active<!--@end--><!--@if($listStyle == 'masonry')--> ms-item<!--@end-->" loop="$document_list=>$no,$document">
+		{@
+		$oModuleModel = &getModel('module');
+		$mi_temp = getModel('module')->getModuleInfoByDocumentSrl($document->document_srl);
+		$grant_temp = $oModuleModel->getGrant($mi_temp, $logged_info);
+		}
+		<a class="link" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl)}"<!--@if(!$grant_temp->view)--> onclick="alert('{$lang->msg_not_permitted}'); return false;"<!--@end-->></a>
+		<div class="wz-item-inner clear<!--@if($thumbWhere != '')--> thumbnail-{$thumbWhere}<!--@end-->">
+			<div cond="$listStyle == 'masonry' && $mi->masonry_thumbnail_where == 'title_bottom'" class="thumbnail-top-header">
+				<div class="wz-item-header ab-truncate">
+					<include target="fn_category.html" /><span class="title"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle($mi->list_title_cut)}</a></span>
+					<include cond="$showIcon" target="print_icon.html" />
+				</div>
+			</div>
+
+
+			<div cond="$showAricleContent" class="content" style=";">
+
+
+
+				{@ $price =$document->getExtraEidValue("Money") } {@ $num_str3 = str_replace(',','',$price)} {@ $t3 = $t3 + $num_str3}
+				<!--//총합-->
+				{@ $countlist = 1} {@ $cl= $cl + $countlist}
+				<div style="float:left; width:22%; height: 80px; margin-top:2px;">
+					<div style=" width: 100%; height: 80px;">
+						<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+						<span style=" font-size:20pt; letter-spacing: -3px;  font-family:'Gothic A1', sans-serif;  color:#777 ;"><b>
+							{substr($document->getExtraEidValue('when'),8,2)}</b></span><br />
+						<span style=" font-size:10pt; margin-left: 0px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif;  color:#777 ;"><b>
+								<!--@if((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Mon')-->
+								MON
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Tue')-->
+								TUE
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Wed')-->
+								WED
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Thu')-->
+								THU
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Fri')-->
+								FRI
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sat')-->
+								SAT
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sun')-->
+								SUN
+								<!--@else-->
+								오류
+								<!--@end-->
+							</b></span>
+						<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+						<span style=" font-size:20pt; letter-spacing: -3px;  font-family:'Gothic A1', sans-serif;  color:#465670 ;"><b>
+							{substr($document->getExtraEidValue('when'),8,2)}</b></span><br />
+						<span style=" font-size:10pt; margin-left: 0px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif;  color:#465670 ;"><b>
+								<!--@if((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Mon')-->
+								MON
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Tue')-->
+								TUE
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Wed')-->
+								WED
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Thu')-->
+								THU
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Fri')-->
+								FRI
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sat')-->
+								SAT
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sun')-->
+								SUN
+								<!--@else-->
+								오류
+								<!--@end-->
+							</b></span>
+						<!--@else-->
+						<span style=" font-size:20pt; letter-spacing: -3px;  font-family:'Gothic A1', sans-serif;  color:#444 ;"><b>
+							{substr($document->getExtraEidValue('when'),8,2)}</b></span><br />
+						<span style=" font-size:10pt; margin-left: 0px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif;  color:#444 ;"><b>
+								<!--@if((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Mon')-->
+								MON
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Tue')-->
+								TUE
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Wed')-->
+								WED
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Thu')-->
+								THU
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Fri')-->
+								FRI
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sat')-->
+								SAT
+								<!--@elseif((zdate(str_replace('-','',$document->getExtraEidValue("when")), "D"))=='Sun')-->
+								SUN
+								<!--@else-->
+								오류
+								<!--@end-->
+							</b></span>
+						<!--@end-->
+
+						<div style="margin-top:16px;">
+							{@ $days = floor( ( time() - mktime(0,0,0,(substr($document->getExtraEidValue('when'),5,2)),(substr($document->getExtraEidValue('when'),8,2)),(substr($document->getExtraEidValue('when'),0,4))) )/86400 )}
+							<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+							<span style="font-size:6pt; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#777 ; ">
+	<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+	<span style="font-size:6pt; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#465670 ; ">
+	<!--@else-->
+	<span style="font-size:6pt; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#444 ; ">
+	<!--@end-->
+
+						<!--@if(($days)=='0')-->
+						! 오늘
+						<!--@else if((substr($days,0,1))=='-')-->
+							<!--@if(str_replace('-','',$days)=='1')-->
+							! 내일
+							<!--@elseif(str_replace('-','',$days)=='2')-->
+							! 모레
+							<!--@else-->
+							{str_replace('-','',$days)}일후
+							<!--@end-->
+						<!--@else-->
+							<!--@if($days =='1')-->
+							어제
+							<!--@elseif($days =='2')-->
+							그저께
+							<!--@else-->
+							{str_replace('-','',$days)}일전
+							<!--@end-->
+						<!--@end-->
+	</span>
+						</div>
+
+
+
+					</div>
+
+				</div>
+				<!--@if(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+
+				<div style="float: left; width: 78%; height: 80px; margin-top: 1px; background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+
+					<div style="float:right;  width: 20px; height: 20px; text-align: left; margin-top: 3px; margin-right: 4px; background: #fff;">
+						<center>
+							<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@else-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@end-->
+
+						</center>
+					</div>
+
+
+
+
+
+
+					<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+					<span style="float:left; width: 85%; font-size:12pt; padding-left: 10px; padding-top: 10px;letter-spacing: -1px; font-family:'Gothic A1', sans-serif;font-weight: 600; color:#777 ; "><b>
+										<s>{$document->getExtraEidValue("What")}</s></b></span><br />
+
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#777 ;"><b><s>
+											<!--@if($document->getExtraEidValue("Hour")=='1')-->
+											<!--@if($document->getExtraEidValue("Min")=='00')-->
+											<!--@if($document->getExtraEidValue("Day")=='AM')-->
+											<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+											<!--@if($document->getExtraEidValue("Min2")=='00')-->
+											<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+											All day long
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+										</s></b></span>
+
+					<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+					<span style="float:left; width: 85%; font-size:12pt;  padding-left: 10px; padding-top: 10px; letter-spacing: -1px; font-family:'Gothic A1', sans-serif; font-weight: 600; color:#3F4963 ; "><b>
+											{$document->getExtraEidValue("What")}</b></span><br />
+
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#3F4963 ;"><b>
+												<!--@if($document->getExtraEidValue("Hour")=='1')-->
+												<!--@if($document->getExtraEidValue("Min")=='00')-->
+												<!--@if($document->getExtraEidValue("Day")=='AM')-->
+												<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+												<!--@if($document->getExtraEidValue("Min2")=='00')-->
+												<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+												All day long
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+												<!--@else-->
+												{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+												<!--@end-->
+											</b></span>
+					<!--@else-->
+					<span style="float:left; width: 85%; font-size:12pt;  padding-left: 10px; padding-top: 10px; letter-spacing: -1px; font-family:'Gothic A1', sans-serif; font-weight: 600; color:#444 ; "><b>
+										{$document->getExtraEidValue("What")}</b></span><br />
+
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#444 ;"><b>
+											<!--@if($document->getExtraEidValue("Hour")=='1')-->
+											<!--@if($document->getExtraEidValue("Min")=='00')-->
+											<!--@if($document->getExtraEidValue("Day")=='AM')-->
+											<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+											<!--@if($document->getExtraEidValue("Min2")=='00')-->
+											<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+											All day long
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+											<!--@else-->
+											{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+											<!--@end-->
+										</b></span>
+					<!--@end-->
+
+
+
+
+
+
+					<div style="float: left; margin-top:12px;">
+
+						<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+						<span style=" font-size:6pt; margin-left: 10px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#fff ;  background: #777;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;">
+																											<!--@if($document->getExtraEidValue("Who")=='')-->
+																											혼자
+																											<!--@else-->
+																											{$document->getExtraEidValue("Who")}
+																											<!--@end--></span>
+
+
+
+
+						<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+
+						<span style=" font-size:6pt; margin-left: 10px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#fff ;  background: #3F4963;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;">
+																											<!--@if($document->getExtraEidValue("Who")=='')-->
+																											혼자
+																											<!--@else-->
+																											{$document->getExtraEidValue("Who")}
+																											<!--@end--></span>
+
+
+						<!--@else-->
+
+						<span style=" font-size:6pt; margin-left: 10px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#fff ;  background: #444;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;">
+																											<!--@if($document->getExtraEidValue("Who")=='')-->
+																											혼자
+																											<!--@else-->
+																											{$document->getExtraEidValue("Who")}
+																											<!--@end--></span>
+
+
+						<!--@end-->
+
+
+
+					</div>
+					<div style="float: right; margin-top:12px;">
+
+						<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px;  font-family:'Gothic A1', sans-serif; color:#777 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px 0 0 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																											￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+
+
+
+						<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px; font-family:'Gothic A1', sans-serif; color:#3F4963 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																											￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+						<!--@else-->
+
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px; font-family:'Gothic A1', sans-serif; color:#444 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																											￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+						<!--@end-->
+
+
+
+					</div>
+
+
+
+				</div>
+
+				<!--@else-->
+				<div style="float: left; width: 78%; height: 80px; margin-top: 1px; background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px;   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+
+					<div style="float:right;  width: 20px; height: 20px; text-align: left; margin-top: 3px; margin-right: 4px; background: #fff;">
+						<center>
+							<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#777;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#3F4963;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@else-->
+							<!--@if($document->getExtraEidValue("sticker")=='좋아요')-->
+							<span class="far fa-smile" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='슬퍼요')-->
+							<span class="far fa-frown" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='아파요')-->
+							<span class="fas fa-band-aid" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='브이')-->
+							<span class="far fa-hand-peace" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='여행')-->
+							<span class="fas fa-train" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='영화')-->
+							<span class="fas fa-film" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='생일')-->
+							<span class="fas fa-birthday-cake" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='과소비')-->
+							<span class="far fa-credit-card" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else if($document->getExtraEidValue("sticker")=='기념일')-->
+							<span class="fas fa-star" style="color:#444;font-size:10px; margin-right:4px;"></span>
+							<!--@else-->
+							<!--@end-->
+							<!--@end-->
+
+						</center>
+					</div>
+
+
+
+
+
+
+					<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+					<div style="float:left; width: 85%; font-size:12pt; padding-left: 10px; padding-top: 10px;letter-spacing: -1px; font-family:'Gothic A1', sans-serif;font-weight: 600; color:#777 ; "><b>
+
+
+
+																					{@ $what = str_replace(' ','',$document->getExtraEidValue("What"))}
+
+						<script>
+							var jbString = '{$what}';
+							var jbSplit = jbString.split(',');
+							for (var i in jbSplit) {
+								document.write('<span class="what"><s>#' + jbSplit[i] + '</s></span>');
+							}
+						</script>
+
+			</b></div>
+
+					<style>
+						.what{
+	background: #eee;
+	margin-right: 4px;
+	}</style>
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#777 ;"><b><s>
+																					<!--@if($document->getExtraEidValue("Hour")=='1')-->
+																					<!--@if($document->getExtraEidValue("Min")=='00')-->
+																					<!--@if($document->getExtraEidValue("Day")=='AM')-->
+																					<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+																					<!--@if($document->getExtraEidValue("Min2")=='00')-->
+																					<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+																					All day long
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																				</s></b></span>
+
+					<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+					<span style="float:left; width: 85%; font-size:12pt;  padding-left: 10px; padding-top: 10px; letter-spacing: -1px; font-family:'Gothic A1', sans-serif; font-weight: 600; color:#3F4963 ; "><b>
+																					{$document->getExtraEidValue("What")}</b></span><br />
+
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#3F4963 ;"><b>
+																						<!--@if($document->getExtraEidValue("Hour")=='1')-->
+																						<!--@if($document->getExtraEidValue("Min")=='00')-->
+																						<!--@if($document->getExtraEidValue("Day")=='AM')-->
+																						<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+																						<!--@if($document->getExtraEidValue("Min2")=='00')-->
+																						<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+																						All day long
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																						<!--@else-->
+																						{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																						<!--@end-->
+																					</b></span>
+					<!--@else-->
+					<span style="float:left; width: 85%; font-size:12pt;  padding-left: 10px; padding-top: 10px; letter-spacing: -1px; font-family:'Gothic A1', sans-serif; font-weight: 600; color:#444 ; "><b>
+																				{$document->getExtraEidValue("What")}</b></span><br />
+
+					<span style=" float: left; width: 100%; margin-top: 6px; font-size:8pt; margin-left: 10px; letter-spacing: 1px;  font-family:'Gothic A1', sans-serif;  color:#444 ;"><b>
+																					<!--@if($document->getExtraEidValue("Hour")=='1')-->
+																					<!--@if($document->getExtraEidValue("Min")=='00')-->
+																					<!--@if($document->getExtraEidValue("Day")=='AM')-->
+																					<!--@if($document->getExtraEidValue("Hour2")=='1')-->
+																					<!--@if($document->getExtraEidValue("Min2")=='00')-->
+																					<!--@if($document->getExtraEidValue("Day2")=='AM')-->
+																					All day long
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																					<!--@else-->
+																					{$document->getExtraEidValue("Hour")}:{$document->getExtraEidValue("Min")} {$document->getExtraEidValue("Day")} - {$document->getExtraEidValue("Hour2")}:{$document->getExtraEidValue("Min2")} {$document->getExtraEidValue("Day2")}
+																					<!--@end-->
+																				</b></span>
+					<!--@end-->
+
+
+
+
+
+
+					<div style="float: left; margin-top:12px; padding-left:10px;">
+
+						<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+						<!--@if($document->getExtraEidValue("Who")=='')-->
+						<span class="abc">혼자</span>
+						<!--@else-->
+						{@ $who = str_replace(' ','',$document->getExtraEidValue('Who'))}
+
+						<script>
+							var jbString = '{$who}';
+							var jbSplit = jbString.split(',');
+							for (var i in jbSplit) {
+								document.write('<span class="abc">' + jbSplit[i] + '</span>');
+							}
+						</script>
+						<!--@end-->
+
+
+
+						<style>
+							.abc{font-size:6pt; margin-right: 4px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#777 ;  border-bottom: 1px solid #eee;  padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;}</style>
+
+
+						<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+
+						<span style=" font-size:6pt; margin-left: 10px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#fff ;  background: #3F4963;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;">
+																																					<!--@if($document->getExtraEidValue("Who")=='')-->
+																																					혼자
+																																					<!--@else-->
+																																					{$document->getExtraEidValue("Who")}
+																																					<!--@end--></span>
+
+
+						<!--@else-->
+
+						<span style=" font-size:6pt; margin-left: 10px; letter-spacing: 0px;  font-family:'Gothic A1', sans-serif; color:#fff ;  background: #444;  -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px; padding-right:2px; padding-top:3px;">
+																																					<!--@if($document->getExtraEidValue("Who")=='')-->
+																																					혼자
+																																					<!--@else-->
+																																					{$document->getExtraEidValue("Who")}
+																																					<!--@end--></span>
+
+
+						<!--@end-->
+
+
+
+					</div>
+					<div style="float: right; margin-top:12px;">
+
+						<!--@if(str_replace('-','',$document->getExtraEidValue("when")) < date('Ymd',time()))-->
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px;  font-family:'Gothic A1', sans-serif; color:#777 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px 0 0 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																																					￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+
+
+
+						<!--@elseif(str_replace('-','',$document->getExtraEidValue("when")) == date('Ymd',time()))-->
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px; font-family:'Gothic A1', sans-serif; color:#3F4963 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																																					￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+						<!--@else-->
+
+
+						<!--@if($document->getExtraEidValue("Money")=='0')-->
+						<!--@else if($document->getExtraEidValue("Money")=='')-->
+						<!--@else-->
+						<span style=" font-size:6pt; margin-right: 10px; font-family:'Gothic A1', sans-serif; color:#444 ;  background: #fff; -webkit-border-radus: 2px; -moz-border-radius: 2px; border-radius: 2px; padding-left:2px;  padding-bottom:1px;padding-right:2px; padding-top:3px;">
+																																					￦ {number_format($document->getExtraEidValue("Money"))}</span>
+						<!--@end-->
+						<!--@end-->
+
+
+
+					</div>
+
+
+
+				</div>
+				<!--@end-->
+			</div>
+		</div>
+	</div>
+</div>
+<!--@if($cl == '')-->
+<div style="width: 100%; height: 80px;">
+	<center>
+		<span style=" font-size:12pt; color:#bcbcbc; letter-spacing: 4px;  font-family:'Gothic A1', sans-serif; "><b>
+<br /><br />아직 생성된 EVENT가 없습니다.
+</span>
+		<span style=" font-size:8pt; color:#bcbcbc; letter-spacing: 2px;  font-family:'Gothic A1', sans-serif;  ">
+<br />상단 우측의 + 버튼으로 추가할 수 있습니다.</span>
+		</b>
+	</center>
+</div>
+<!--@else-->
+<div style="width: 100%; height: 80px; border-top:1px solid #ddd;">
+	<center>
+		<span style=" font-size:12pt; color:#bcbcbc; letter-spacing: 4px;  font-family:'Gothic A1', sans-serif; "><b>
+<br /><br />{$cl}개의 EVENT
+</span>
+		<span style=" font-size:8pt; color:#bcbcbc; letter-spacing: 2px;  font-family:'Gothic A1', sans-serif;  ">
+<br />￦ {number_format($t3)} 소비</span>
+		</b>
+	</center>
+</div>
+<!--@end-->
+
+
+
+<!--@if($listStyle == 'masonry')-->
+<!--@if($thumbType == 'ratio')-->
+<load target="../assets/js/masonry.pkgd.js" />
+<script type="text/javascript">
+	$(window).load(function() {
+		$('.ab-webzine.masonry').masonry({
+			// options
+			itemSelector: '.ms-item',
+			columnWidth: '.ms-sizer',
+			percentPosition: true
+		});
+	});
+</script>
+<!--@else-->
+<load target="../assets/js/jquery.matchHeight.js" />
+<script type="text/javascript">
+	$(window).load(function() {
+		$('.ms-item').matchHeight();
+	});
+</script>
+<!--@end-->
+<!--@end-->

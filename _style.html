@@ -1,0 +1,164 @@
+<style>
+{$FontFamilyImport}
+.board-wrapper {
+	padding: {$fs_pd_md};
+	font-size: {$fs_ui_md}px;
+	font-family: {$FontFamilyList}, sans-serif;
+}
+.board-wrapper *:not(.fas, .far, .fab, .fa, .xi-icon, .xi-check-circle) {
+	font-family: {$FontFamilyList}, sans-serif;
+}
+.board-wrapper table, .board-wrapper input, .board-wrapper textarea, .board-wrapper select, .board-wrapper button {
+	font-size: {$fs_ui_md}px;
+	font-family: {$FontFamilyList}, sans-serif;
+	letter-spacing: -0.5px;
+}
+.xe_content {
+	font-size: {$fs_content_md}px;
+}
+@media (min-width: 1280px){
+	.board-wrapper {
+		font-size: {$fs_ui_lg}px;
+		padding: {$fs_pd_lg};
+	}
+	.xe_content {
+		font-size: {$fs_content_lg}px;
+	}
+}
+@media (max-width: 640px){
+	.board-wrapper {
+		font-size: {$fs_ui_sm}px;
+		padding: {$fs_pd_sm};
+	}
+	.xe_content {
+		font-size: {$fs_content_sm}px;
+	}
+}
+
+/* Color Setting */
+.ab-btn-point, .ab-point-color, i.read {
+	color: {$mi->color_point} !important;
+}
+.ab-point-bacolor {
+	border-color: {$mi->color_point} !important;
+}
+.absc.list .notice, .ab-point-blcolor {
+	border-left-color: {$mi->color_point};
+}
+.ab-point-bbcolor {
+	border-bottom-color: {$mi->color_point} !important;
+}
+.ab-point-bbcolor-hover:hover {
+	border-bottom-color: {$mi->color_point} !important;
+}
+.absc.pgnt strong.pagination-num, .ab-point-bgcolor {
+	background-color: {$mi->color_point} !important;
+}
+.ab-checkbox input:checked ~ label {
+	color: {$mi->color_point} !important;
+}
+.title-color-picker-modal .sp-choose, .title-color-picker-modal .sp-choose:hover {
+	color: {$mi->color_point} !important;
+}
+
+/* Thumbnail Setting */
+.thumbwrap {
+	padding-bottom: {$thumbRatio}%;
+}
+.absc.list .ab-webzine .wz-item .thumbnail-left .thumbnail {
+	width: {$webzineThumbnailWidthSmall}px;
+}
+.absc.list .ab-webzine .wz-item .thumbnail-left .content {
+	width: calc(100% - {$webzineThumbnailWidthSmall}px - 1em);
+}
+@media (min-width: 641px){
+	.absc.list .ab-webzine .wz-item .thumbnail-left .thumbnail {
+		width: {$webzineThumbnailWidthMedium}px;
+	}
+	.absc.list .ab-webzine .wz-item .thumbnail-left .content {
+		width: calc(100% - {$webzineThumbnailWidthMedium}px - 1em);
+	}
+}
+@media (min-width: 1025px){
+	.absc.list .ab-webzine .wz-item .thumbnail-left .thumbnail {
+		width: {$webzineThumbnailWidthLarge}px;
+	}
+	.absc.list .ab-webzine .wz-item .thumbnail-left .content {
+		width: calc(100% - {$webzineThumbnailWidthLarge}px - 1em);
+	}
+}
+
+<!--@if(!$showAricleContent)-->
+.absc.list .ab-webzine .wz-item .thumbnail {
+	margin-bottom: 0;
+}
+.absc.list .ab-webzine:not(.notice) .wz-item:hover {
+	padding: 0.5em;
+}
+<!--@end-->
+
+<!--@if($listStyle == 'masonry')-->
+.absc.list .masonry {
+	margin-top: 1em;
+	<!--@if($masonryStyleMargin)-->
+		margin-right: -{$masonryStyleMargin} ;
+	<!--@end-->
+}
+.absc.list .masonry .ms-item {
+	border-bottom: none;
+	float: left;
+}
+.absc.list .masonry .ms-item .content {
+}
+.ms-sizer, .absc.list .masonry .ms-item {
+	width: calc( ( 100% / {$masonryColumnSmall} )<!--@if($masonryStyleMargin)--> - {$masonryStyleMargin} <!--@end-->);
+	margin-bottom: {$masonryStyleMargin};
+	margin-right: {$masonryStyleMargin};
+	display: inline-block;
+}
+.absc.list .masonry .ms-item {
+	background-color: {$masonryStyleBackground};
+	border: {$masonryStyleBorder};
+	border-radius: {$masonryStyleRadius};
+	box-shadow: {$masonryStyleShadow};
+}
+@media (min-width: 641px) {
+	.ms-sizer, .absc.list .masonry .ms-item {
+		width: calc( ( 100% / {$masonryColumnMedium} )<!--@if($masonryStyleMargin)--> - {$masonryStyleMargin} <!--@end-->);
+	}
+}
+@media (min-width: 1025px) {
+	.ms-sizer, .absc.list .masonry .ms-item {
+		width: calc( ( 100% / {$masonryColumnLarge} )<!--@if($masonryStyleMargin)--> - {$masonryStyleMargin} <!--@end-->);
+	}
+}
+	<!--@if($mi->masonry_thumbnail_where == 'title_bottom')-->
+	.absc.list .ab-webzine .wz-item .thumbnail {
+		margin-bottom: 0;
+	}
+	.absc.list .ab-webzine .wz-item .wz-item-summary {
+		margin-top: 0.5em;
+	}
+	<!--@end-->
+<!--@end-->
+
+/* XEFU */
+.xefu-btn.fileinput-button > span {
+	color: {$mi->color_point} !important;
+}
+.xefu-act-link-selected {
+	color: {$mi->color_point} !important;
+}
+
+/* board list hover border-bottom */
+<!--@if($mi->hover_bottom_line == 'n')-->
+.absc.list .ab-table tbody tr .title a:first-child {
+	border-bottom: none !important;
+}
+.absc.list .ab-webzine .wz-item:hover .title {
+	border-bottom: none;
+}
+<!--@end-->
+
+{$mi->etc_custom_css}
+</style>
