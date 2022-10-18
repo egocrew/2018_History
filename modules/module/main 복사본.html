@@ -1,0 +1,630 @@
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+
+<!--@if($j=='')-->
+<!--//변수값이 없는 초기접속일경우-->
+{@ $date = date('Y-m-d',time())}
+<!--@else-->
+{@ $date = $extra_vars1}
+<!--@end-->
+
+
+<div class="searchBox">
+  <form id="myForm">
+
+    <div class="searchBoxIcon">
+      <center>
+        <svg width="8px" height="8px" id="icon" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M10,8.445C11.19,7.752,12,6.477,12,5V4c0-2.209-1.791-4-4-4S4,1.791,4,4v1  c0,1.477,0.81,2.752,2,3.445v0.719C2.551,9.72,0,11.671,0,14v1c0,0.553,0.448,1,1,1h14c0.552,0,1-0.447,1-1v-1  c0-2.329-2.551-4.28-6-4.836V8.445z" id="User_1_x2C__Profile_2"/>
+      </svg>
+      </center>
+    </div>
+
+    <div class="searchBoxInput">
+      <input type="text" class="" name="input_who" id="input_who" value="{$extra_vars2}" placeholder="상대" style="color:#000; width: 80px; height:30px; padding-bottom: 10px; font-weight:500;">
+    </div>
+
+      <div class="searchBoxIcon">
+        <center>
+          <svg width="8px" height="8px" id="icon" style="enable-background:new 0 0 12.145 16;" version="1.1" viewBox="0 0 12.145 16" width="12.145px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M6.072,0C2.719,0,0,2.719,0,6.072c0,4.29,4.363,8.579,5.692,9.787c0.207,0.188,0.553,0.188,0.76,0  c1.329-1.208,5.692-5.497,5.692-9.787C12.145,2.719,9.426,0,6.072,0z M6.072,9c-1.656,0-3-1.344-3-3s1.344-3,3-3s3,1.344,3,3  S7.729,9,6.072,9z" id="Location_Pin_1"/>
+        </svg>
+        </center>
+      </div>
+
+      <div class="searchBoxInput">
+        <input type="text" class="" name="input_where" id="input_where" value="{$extra_vars3}" placeholder="장소" style="color:#000; width: 80px; height:30px; padding-bottom: 10px; font-weight:500;">
+      </div>
+
+        <div class="searchBoxButton">
+          <input type="button" class="" style="width:50px; height:20px;ext-align: center; color:#fff;" name="inspecionar" id="inspecionar" value="검색" onclick="location.href='https://owaw.net/?act=&vid=&mid=history&view=search&j=1&extra_vars2=' + document.getElementById('input_who').value + '&extra_vars3=' + document.getElementById('input_where').value;">
+        </div>
+  </form>
+</div>
+
+<div class="adBox">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="fluid"
+       data-ad-layout-key="-fb+5w+4e-db+86"
+       data-ad-client="ca-pub-3898023920655242"
+       data-ad-slot="6645658383"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<div class="listBox">
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y-m-d',time())}&j=1&view=days">
+      <div>
+        일간보기
+        <span class="listDay">1일</span>
+      </div>
+    </a>
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date("Y-m-d",strtotime('Monday this week'))}&extra_vars1-2={date( "Y-m-d", strtotime( "$pDate +6 days" ) )}&j=1&view=week">
+      <div>
+      주간보기
+      <span class="listDay">7일</span>
+      </div>
+    </a>
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y-m',time())}&j=1&view=month">
+      <div>
+      월간보기
+      <span class="listDay">31일</span>
+      </div>
+    </a>
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y',time())}&j=1&view=years">
+      <div>
+      년간보기
+      <span class="listDay">365일</span>
+      </div>
+    </a>
+
+</div>
+
+{@ $monday = date("Y-m-d",strtotime('Monday this week'))}
+{@ $tuesday = date("Y-m-d",strtotime('Tuesday this week'))}
+{@ $wednesday = date("Y-m-d",strtotime('Wednesday this week'))}
+{@ $thursday = date("Y-m-d",strtotime('Thursday this week'))}
+{@ $friday = date("Y-m-d",strtotime('Friday this week'))}
+{@ $saturday = date("Y-m-d",strtotime('Saturday this week'))}
+{@ $sunday = date("Y-m-d",strtotime('Sunday this week'))}
+
+
+<div cond="$document_list" class="clear" style="display:none;">
+  <div loop="$document_list=>$no,$document" style="">
+
+    {@
+    $oModuleModel = &getModel('module');
+    $mi_temp = getModel('module')->getModuleInfoByDocumentSrl($document->document_srl);
+    $grant_temp = $oModuleModel->getGrant($mi_temp, $logged_info);
+    }
+    <!--@if($document->get('member_srl')==$logged_info->member_srl)--> {@ $countStory = 1 + $countStory}
+    <!--@end-->
+
+    <!--@if($document->getExtraEidValue('when') == $monday)-->
+    {@ $monCount++ }
+    <!--@if($monCount == '1')-->
+    {@ $monTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($monCount == '2')-->
+    {@ $monTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($monCount == '3')-->
+    {@ $monTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end -->
+
+    <!--@if($document->getExtraEidValue('when') == $tuesday)-->
+    {@ $tueCount++ }
+    <!--@if($tueCount == '1')-->
+    {@ $tueTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($tueCount == '2')-->
+    {@ $tueTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($tueCount == '3')-->
+    {@ $tueTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+
+    <!--@if($document->getExtraEidValue('when') == $wednesday)-->
+    {@ $wedCount++ }
+    <!--@if($wedCount == '1')-->
+    {@ $wedTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($wedCount == '2')-->
+    {@ $wedTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($wedCount == '3')-->
+    {@ $wedTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+
+    <!--@if($document->getExtraEidValue('when') == $thursday)-->
+    {@ $thuCount++ }
+    <!--@if($thuCount == '1')-->
+    {@ $thuTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($thuCount == '2')-->
+    {@ $thuTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($thuCount == '3')-->
+    {@ $thuTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+
+    <!--@if($document->getExtraEidValue('when') == $friday)-->
+    {@ $friCount++ }
+    <!--@if($friCount == '1')-->
+    {@ $friTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($friCount == '2')-->
+    {@ $friTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($friCount == '3')-->
+    {@ $friTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+
+    <!--@if($document->getExtraEidValue('when') == $saturday)-->
+    {@ $satCount++ }
+    <!--@if($satCount == '1')-->
+    {@ $satTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($satCount == '2')-->
+    {@ $satTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($satCount == '3')-->
+    {@ $satTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+
+    <!--@if($document->getExtraEidValue('when') == $sunday)-->
+    {@ $sunCount++ }
+    <!--@if($sunCount == '1')-->
+    {@ $sunTime1 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($sunCount == '2')-->
+    {@ $sunTime2 = $document->getExtraEidValue('Hour')}
+
+    <!--@elseif($sunCount == '3')-->
+    {@ $sunTime3 = $document->getExtraEidValue('Hour')}
+    <!--@end-->
+    <!--@end-->
+
+  </div>
+</div>
+
+
+<div class="WeekBox">
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$monday}&j=1&view=days">
+  <div class="DayArea <!--@if($monday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($monday))}일(월)</span><br />
+      <div class="DayList">
+        <!--@if($monTime1 != '')-->
+        <span>{$monTime1}</span><br />
+        <!--@end-->
+        <!--@if($monTime2 != '')-->
+        <span>{$monTime2}</span><br />
+        <!--@end-->
+        <!--@if($monTime3 != '')-->
+        <span>{$monTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($monCount != '')-->
+      <span class="DayCount">{$monCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$tuesday}&j=1&view=days">
+  <div class="DayArea <!--@if($tuesday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($tuesday))}일(화)</span><br />
+
+      <div class="DayList">
+        <!--@if($tueTime1 != '')-->
+        <span>{$tueTime1}</span><br />
+        <!--@end-->
+        <!--@if($tueTime2 != '')-->
+        <span>{$tueTime2}</span><br />
+        <!--@end-->
+        <!--@if($tueTime3 != '')-->
+        <span>{$tueTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($tueCount != '')-->
+      <span class="DayCount">{$tueCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$wednesday}&j=1&view=days">
+
+  <div class="DayArea <!--@if($wednesday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($wednesday))}일(수)</span><br />
+
+      <div class="DayList">
+        <!--@if($wedTime1 != '')-->
+        <span>{$wedTime1}</span><br />
+        <!--@end-->
+        <!--@if($wedTime2 != '')-->
+        <span>{$wedTime2}</span><br />
+        <!--@end-->
+        <!--@if($wedTime3 != '')-->
+        <span>{$wedTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($wedCount != '')-->
+      <span class="DayCount">{$wedCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$thursday}&j=1&view=days">
+
+  <div class="DayArea <!--@if($thursday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($thursday))}일(목)</span><br />
+
+      <div class="DayList">
+        <!--@if($thuTime1 != '')-->
+        <span>{$thuTime1}</span><br />
+        <!--@end-->
+        <!--@if($thuTime2 != '')-->
+        <span>{$thuTime2}</span><br />
+        <!--@end-->
+        <!--@if($thuTime3 != '')-->
+        <span>{$thuTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($thuCount != '')-->
+      <span class="DayCount">{$thuCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$friday}&j=1&view=days">
+
+  <div class="DayArea <!--@if($friday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($friday))}일(금)</span><br />
+
+      <div class="DayList">
+        <!--@if($friTime1 != '')-->
+        <span>{$friTime1}</span><br />
+        <!--@end-->
+        <!--@if($friTime2 != '')-->
+        <span>{$friTime2}</span><br />
+        <!--@end-->
+        <!--@if($friTime3 != '')-->
+        <span>{$friTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($friCount != '')-->
+      <span class="DayCount">{$friCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$saturday}&j=1&view=days">
+
+  <div class="DayArea <!--@if($saturday == date('Y-m-d',time()))-->DayNoti<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($saturday))}일(토)</span><br />
+
+      <div class="DayList">
+        <!--@if($satTime1 != '')-->
+        <span>{$satTime1}</span><br />
+        <!--@end-->
+        <!--@if($satTime2 != '')-->
+        <span>{$satTime2}</span><br />
+        <!--@end-->
+        <!--@if($satTime3 != '')-->
+        <span>{$satTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($satCount != '')-->
+      <span class="DayCount">{$satCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+  <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={$sunday}&j=1&view=days">
+
+  <div class="DayArea <!--@if($sunday == date('Y-m-d',time()))-->DayNoti<!--@else-->test<!--@end-->">
+    <center>
+      <span class="DayText">{date('d',strtotime($sunday))}일(일)</span><br />
+
+      <div class="DayList">
+        <!--@if($sunTime1 != '')-->
+        <span>{$sunTime1}</span><br />
+        <!--@end-->
+        <!--@if($sunTime2 != '')-->
+        <span>{$sunTime2}</span><br />
+        <!--@end-->
+        <!--@if($sunTime3 != '')-->
+        <span>{$sunTime3}</span><br />
+        <!--@end-->
+      </div>
+
+      <!--@if($sunCount != '')-->
+      <span class="DayCount">{$sunCount}개</span>
+      <!--@else-->
+      <span class="DayCount">없음</span>
+      <!--@end-->
+
+    </center>
+  </div>
+</a>
+
+</div>
+
+<style>
+  .DayNoti {
+    -webkit-animation: pulse 1s linear infinite;
+    animation: pulse 1s linear infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      background: #fff;
+    }
+
+    50% {
+      background: #f0f0f0;
+    }
+
+    100% {
+      background: #fff;
+    }
+  }
+
+  @-webkit-keyframes pulse {
+    0% {
+      background: #fff;
+    }
+
+    50% {
+      background: #f0f0f0;
+    }
+
+    100% {
+      background: #fff;
+    }
+  }
+
+
+  .DayCount {
+    font-size: 8pt;
+    font-weight: 500 !important;
+    color: #999;
+  }
+
+  .DayList {
+    height: 46px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .DayList span {
+    font-size: 8pt;
+    font-weight: 500 !important;
+    color: #000;
+  }
+
+  .DayText {
+    font-size: 9pt;
+    font-weight: 500 !important;
+    color: #555;
+  }
+
+  .DayArea {
+    float: left;
+    width: 14%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .WeekBox {
+    float: left;
+    margin-top: 10px;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 80px;
+    background: #fff;
+    border: 1px solid #ededed;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  .adBox {
+    margin-top: 10px;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+    background: #fff;
+    border: 1px solid #ededed;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  .listDay {
+    float: right;
+    color: #ddd;
+  }
+
+  .listBox {
+    margin-top: 10px;
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+  .listBox div {
+    float: left;
+    width: 48%;
+    padding: 20px;
+    padding-top: 22px;
+    border: 1px solid #ededed;
+    margin: 1%;
+    background: #fff;
+    font-size: 12pt;
+    font-weight: 900 !important;
+    letter-spacing: 1px;
+  }
+
+  .searchBox {
+    margin-top: 72px;
+    width: 96%;
+    height: 42px;
+    margin-left: 2%;
+    margin-right: 2%;
+    background: #fff;
+    border: 1px solid #ededed;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  .searchBoxIcon {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    margin-right: 2px;
+    padding: 3px;
+    padding-top: 1px;
+    background: #000;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  .searchBoxIcon svg {
+    fill: #ddd;
+  }
+
+  .searchBoxInput {
+    float: left;
+    width: 80px;
+    height: 20px;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 8px;
+  }
+
+  .searchBoxButton {
+    float: right;
+    width: 50px;
+    height: 20px;
+    background: #222;
+    color: #fff;
+    margin: 10px;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  .searchBoxButton input {
+    font-size: 9pt;
+    font-weight: 900 !important;
+    color: #ddd;
+  }
+
+  .dday {
+    float: right;
+    font-size: 6pt;
+    font-weight: 900 !important;
+    color: #ddd;
+    background: #000;
+    padding: 3px 4px 1px 4px;
+    margin-right: 4px;
+    -webkit-border-radus: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  table {
+
+    border-right: 2px solid #fff;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    text-align: center;
+    vertical-align: middle;
+    ;
+  }
+
+  input {
+    -webkit-appearance: none;
+    text-overflow: ellipsis;
+    background: none !important;
+    border: none;
+    outline: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+
+    width: 200px;
+    height: 54px;
+    padding: 8px 40px 8px 0;
+    line-height: 54px;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+
+  input::placeholder {
+    line-height: 20px;
+
+  }
+</style>

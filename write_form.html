@@ -1,700 +1,467 @@
 <include target="_config.html" />
-<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
 
-<link href="https://fonts.googleapis.com/css?family=Gothic+A1:200|Asap:700|Gothic+A1:600" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<head>
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300|Noto+Sans+KR:500|Noto+Sans+KR:700" rel="stylesheet">
 
+</head>
 
-<!--// 하단바 시작 -->
+<!--// 날짜 선택 스크립트 -->
 <script>
-	$(document).ready(function() {
-		$("#memoBtn").click(function() {
-			$("div.areaMemo-hide").switchClass("areaMemo-hide", "areaMemo-on", 400, "easeInOutCubic");
-			$("div.areaMemo-on").switchClass("areaMemo-on", "areaMemo-hide", 600, "easeInOutCubic");
-		});
-
-		$("div.writecContentOpenGround1").hide();
-		$("div.writecContentOpenGround1").show("fade", 800);
-
-		$("#nextButton1").click(function() {
-			$("div.writecContentOpenGround1").switchClass("writecContentOpenGround1", "writecContentCloseGround1", 200, "easeInOutCubic");
-			$("div.writecContentCloseGround2").switchClass("writecContentCloseGround2", "writecContentOpenGround2", 300, "easeInOutCubic");
-			$("#nextButton1").hide("fade", 100);
-			$("#nextButton2").show("fade", 100);
-			$("#leftButton1").hide("fade", 100);
-			$("#leftButton2").show("fade", 100);
-		});
-
-		$("#leftButton2").click(function() {
-			$("div.writecContentCloseGround1").switchClass("writecContentCloseGround1", "writecContentOpenGround1", 200, "easeInOutCubic");
-			$("div.writecContentOpenGround2").switchClass("writecContentOpenGround2", "writecContentCloseGround2", 300, "easeInOutCubic");
-			$("#nextButton2").hide("fade", 100);
-			$("#nextButton1").show("fade", 100);
-			$("#leftButton2").hide("fade", 100);
-			$("#leftButton1").show("fade", 100);
-		});
-
-		$("#nextButton2").click(function() {
-			$("div.writecContentOpenGround2").switchClass("writecContentOpenGround2", "writecContentCloseGround2", 200, "easeInOutCubic");
-			$("div.writecContentCloseGround3").switchClass("writecContentCloseGround3", "writecContentOpenGround3", 300, "easeInOutCubic");
-			$("#nextButton2").hide("fade", 100);
-			$("#nextButton3").show("fade", 100);
-			$("#leftButton2").hide("fade", 100);
-			$("#leftButton3").show("fade", 100);
-		});
-
-		$("#leftButton3").click(function() {
-			$("div.writecContentCloseGround2").switchClass("writecContentCloseGround2", "writecContentOpenGround2", 200, "easeInOutCubic");
-			$("div.writecContentOpenGround3").switchClass("writecContentOpenGround3", "writecContentCloseGround3", 300, "easeInOutCubic");
-			$("#nextButton3").hide("fade", 100);
-			$("#nextButton2").show("fade", 100);
-			$("#leftButton3").hide("fade", 100);
-			$("#leftButton2").show("fade", 100);
-		});
-
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년'
 	});
+
+	$(function() {
+		$("#date").datepicker();
+	});
+
 </script>
+<!--// 날짜 선택 스크립트 -->
 
-<!--// 하단바 끝 -->
 
-<div class="writecContentMainGround1">
+<div class="background">
+	<div class="AreaHead">
+		<span>하이스토리 작성</span>
+	</div>
 	<form action="./" method="post" onsubmit="return procFilter(this, window.insert)" class="write-form">
+
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="document_srl" value="{$document_srl}" />
 		<input type="hidden" name="content"  value=".">
 
+		{@ $yesterday = strtotime("-1 day")}
+		{@ $tomorrow = strtotime("+1 day")}
 
-		<div class="writecContentOpenGround1">
-			<div class="areaHeader">
-				<i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle checkCircle"></i>
-			</div>
+		<div class="writeBox dateBox">
+			<div class="writeline">
 
-			<div class="areaContent">
-				<span class="textFont nameFont">! 약속날짜</span>
-				<div style="float:left; width:100%; height:50px; border-bottom:1px solid #fff;">
-					<input onfocus="blur()" id="date" placeholder=""  type="text" name="extra_vars1" id="when" value="{zdate(str_replace('-','',$oDocument->getExtraEidValue("when")), 'Y-m-d')}" cond="$oDocument->getExtraEidValueHTML('when')" />
-					<input onfocus="blur()" id="date" placeholder=""  type="text" name="extra_vars1" id="when" cond="!$oDocument->getExtraEidValueHTML('when')" />
-				</div>
+				<div class="writeName">
+					<center>
+						<span>날짜</span>
+					</center>
 				</div>
 
-				<div class="areaSubContent">
-					{@ $yesterday = strtotime("-1 day")}
-					{@ $tomorrow = strtotime("+1 day")}
+				<div class="writeInputBasic">
+					<input onfocus="blur()" style="width: 100%; height: 24px; margin-left:10px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;" id="date" placeholder=""  type="text" name="extra_vars1" id="when" cond="!$oDocument->getExtraEidValueHTML('when')" />
+					<input onfocus="blur()" style="width: 100%; height: 24px; margin-left:10px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 9pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;" id="date" placeholder=""  type="text" name="extra_vars1" id="when" value="{zdate(str_replace('-','',$oDocument->getExtraEidValue("when")), 'Y-m-d')}" cond="$oDocument->getExtraEidValueHTML('when')" />
+				</div>
 
-					<div>
-						<span class="textFont subDate" id="dateButtonYester">어제</span>
-						<span class="textFont subDate" id="dateButtonToday">오늘</span>
-						<span class="textFont subDate" id="dateButtonTomorrow">내일</span>
+					<div class="writeOption">
+						<div class="dateButton">
+							<span class="subDate" id="dateButtonYester">어제</span>
+							<span class="subDate" id="dateButtonToday">오늘</span>
+							<span class="subDate" id="dateButtonTomorrow">내일</span>
+						</div>
+
+
+						<select name="extra_vars4" style="width: 53px; height: 20px;letter-spacing: 4px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 8pt;  font-weight: 900;  color:#8C8C8C ; background:#F2F2F2;">
+													<option class="00:00" value="00:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='00:00'">12:00</option>
+													<option class="00:30" value="00:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='00:30'">00:30</option>
+													<option class="01:00" value="01:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='01:00'">01:00</option>
+													<option class="01:30" value="01:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='01:30'">01:30</option>
+													<option class="02:00" value="02:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='02:00'">02:00</option>
+													<option class="02:30" value="02:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='02:30'">02:30</option>
+													<option class="03:00" value="03:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='03:00'">03:00</option>
+													<option class="03:30" value="03:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='03:30'">03:30</option>
+													<option class="04:00" value="04:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='04:00'">04:00</option>
+													<option class="04:30" value="04:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='04:30'">04:30</option>
+													<option class="05:00" value="05:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='05:00'">05:00</option>
+													<option class="05:30" value="05:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='05:30'">05:30</option>
+													<option class="06:00" value="06:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='06:00'">06:00</option>
+													<option class="06:30" value="06:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='06:30'">06:30</option>
+													<option class="07:00" value="07:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='07:00'">07:00</option>
+													<option class="07:30" value="07:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='07:30'">07:30</option>
+													<option class="08:00" value="08:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='08:00'">08:00</option>
+													<option class="08:30" value="08:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='08:30'">08:30</option>
+													<option class="09:00" value="09:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='09:00'">09:00</option>
+													<option class="09:30" value="09:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='09:30'">09:30</option>
+													<option class="10:00" value="10:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='10:00'">10:00</option>
+													<option class="10:30" value="10:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='10:30'">10:30</option>
+													<option class="11:00" value="11:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='11:00'">11:00</option>
+													<option class="11:30" value="11:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='11:30'">11:30</option>
+													</select>
+
+						<select name="extra_vars5" style="width: 28px; height: 20px;letter-spacing: 4px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 8pt;  font-weight: 900;  color:#8C8C8C ; background:#F2F2F2; margin-right:14px;">
+														<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='AM'">AM</option>
+														<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='PM'">PM</option>
+									</select>
+
+						<select name="extra_vars6" style="width: 53px; height: 20px;letter-spacing: 4px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 8pt;  font-weight: 900;  color:#8C8C8C ; background:#F2F2F2;">
+																			<option class="00:00" value="00:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='00:00'">12:00</option>
+																			<option class="00:30" value="00:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='00:30'">00:30</option>
+																			<option class="01:00" value="01:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='01:00'">01:00</option>
+																			<option class="01:30" value="01:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='01:30'">01:30</option>
+																			<option class="02:00" value="02:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='02:00'">02:00</option>
+																			<option class="02:30" value="02:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='02:30'">02:30</option>
+																			<option class="03:00" value="03:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='03:00'">03:00</option>
+																			<option class="03:30" value="03:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='03:30'">03:30</option>
+																			<option class="04:00" value="04:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='04:00'">04:00</option>
+																			<option class="04:30" value="04:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='04:30'">04:30</option>
+																			<option class="05:00" value="05:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='05:00'">05:00</option>
+																			<option class="05:30" value="05:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='05:30'">05:30</option>
+																			<option class="06:00" value="06:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='06:00'">06:00</option>
+																			<option class="06:30" value="06:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='06:30'">06:30</option>
+																			<option class="07:00" value="07:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='07:00'">07:00</option>
+																			<option class="07:30" value="07:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='07:30'">07:30</option>
+																			<option class="08:00" value="08:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='08:00'">08:00</option>
+																			<option class="08:30" value="08:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='08:30'">08:30</option>
+																			<option class="09:00" value="09:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='09:00'">09:00</option>
+																			<option class="09:30" value="09:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='09:30'">09:30</option>
+																			<option class="10:00" value="10:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='10:00'">10:00</option>
+																			<option class="10:30" value="10:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='10:30'">10:30</option>
+																			<option class="11:00" value="11:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='11:00'">11:00</option>
+																			<option class="11:30" value="11:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='11:30'">11:30</option>
+																			</select>
+
+						<select name="extra_vars7" style="width: 28px; height: 20px;letter-spacing: 4px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 8pt;  font-weight: 900;  color:#8C8C8C ; background:#F2F2F2;">
+																				<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='AM'">AM</option>
+																				<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='PM'">PM</option>
+																		</select>
 					</div>
-					<script>
-						$.datepicker.setDefaults({
-			        dateFormat: 'yy-mm-dd',
-			        prevText: '이전 달',
-			        nextText: '다음 달',
-			        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-			        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-			        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-			        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-			        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-			        showMonthAfterYear: true,
-			        yearSuffix: '년'
-			    });
 
-			    $(function() {
-			        $("#date").datepicker();
-			    });
-
-				  </script>
+				</div>
 
 
-					<script>
-						$( "#dateButtonToday" ).click(function() {
-					var text =  "{date('Y-m-d',time())}";
-					$( "#date" ).val( text );
+
+				<script>
+					$("#dateButtonToday").click(function() {
+						var text = "{date('Y-m-d',time())}";
+						$("#date").val(text);
 					});
-					$( "#dateButtonYester" ).click(function() {
-					var text =  "{date('Y-m-d',$yesterday)}";
-					$( "#date" ).val( text );
-				});
-				$( "#dateButtonTomorrow" ).click(function() {
-				var text =  "{date('Y-m-d',$tomorrow)}";
-				$( "#date" ).val( text );
-			});
-
-
-		 		</script>
-				</div>
-
-
-
-
-				<div class="areaTime">
-					<div style="width:100%;">
-						<span class="textFont nameFont">약속시간</span>
-					</div>
-
-					<div class="areaTimeBox">
-						<select name="extra_vars4" style="float:left; width: 70%; height: 50px;letter-spacing: 8px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 16pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
-							<option class="00:30" value="00:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='00:30'">00:30</option>
-							<option class="01:00" value="01:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='01:00'">01:00</option>
-							<option class="01:30" value="01:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='01:30'">01:30</option>
-							<option class="02:00" value="02:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='02:00'">02:00</option>
-							<option class="02:30" value="02:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='02:30'">02:30</option>
-							<option class="03:00" value="03:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='03:00'">03:00</option>
-							<option class="03:30" value="03:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='03:30'">03:30</option>
-							<option class="04:00" value="04:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='04:00'">04:00</option>
-							<option class="04:30" value="04:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='04:30'">04:30</option>
-							<option class="05:00" value="05:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='05:00'">05:00</option>
-							<option class="05:30" value="05:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='05:30'">05:30</option>
-							<option class="06:00" value="06:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='06:00'">06:00</option>
-							<option class="06:30" value="06:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='06:30'">06:30</option>
-							<option class="07:00" value="07:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='07:00'">07:00</option>
-							<option class="07:30" value="07:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='07:30'">07:30</option>
-							<option class="08:00" value="08:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='08:00'">08:00</option>
-							<option class="08:30" value="08:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='08:30'">08:30</option>
-							<option class="09:00" value="09:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='09:00'">09:00</option>
-							<option class="09:30" value="09:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='09:30'">09:30</option>
-							<option class="10:00" value="10:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='10:00'">10:00</option>
-							<option class="10:30" value="10:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='10:30'">10:30</option>
-							<option class="11:00" value="11:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='11:00'">11:00</option>
-							<option class="11:30" value="11:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='11:30'">11:30</option>
-							<option class="00:00" value="00:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour')==='00:00'">12:00</option>
-							</select>
-
-						<select name="extra_vars5" style="float:left; width: 30%; height: 50px;letter-spacing: 8px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
-								<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='PM'">PM</option>
-								<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day')==='AM'">AM</option>
-						</select></div>
-
-					<div class="areaTimeBox" style="margin-right:0;">
-						<select name="extra_vars6" style="float:left; width: 70%; height: 50px;letter-spacing: 8px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 16pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
-							<option class="00:30" value="00:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='00:30'">00:30</option>
-							<option class="01:00" value="01:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='01:00'">01:00</option>
-							<option class="01:30" value="01:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='01:30'">01:30</option>
-							<option class="02:00" value="02:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='02:00'">02:00</option>
-							<option class="02:30" value="02:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='02:30'">02:30</option>
-							<option class="03:00" value="03:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='03:00'">03:00</option>
-							<option class="03:30" value="03:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='03:30'">03:30</option>
-							<option class="04:00" value="04:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='04:00'">04:00</option>
-							<option class="04:30" value="04:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='04:30'">04:30</option>
-							<option class="05:00" value="05:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='05:00'">05:00</option>
-							<option class="05:30" value="05:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='05:30'">05:30</option>
-							<option class="06:00" value="06:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='06:00'">06:00</option>
-							<option class="06:30" value="06:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='06:30'">06:30</option>
-							<option class="07:00" value="07:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='07:00'">07:00</option>
-							<option class="07:30" value="07:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='07:30'">07:30</option>
-							<option class="08:00" value="08:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='08:00'">08:00</option>
-							<option class="08:30" value="08:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='08:30'">08:30</option>
-							<option class="09:00" value="09:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='09:00'">09:00</option>
-							<option class="09:30" value="09:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='09:30'">09:30</option>
-							<option class="10:00" value="10:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='10:00'">10:00</option>
-							<option class="10:30" value="10:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='10:30'">10:30</option>
-							<option class="11:00" value="11:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='11:00'">11:00</option>
-							<option class="11:30" value="11:30" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='11:30'">11:30</option>
-							<option class="00:00" value="00:00" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Hour2')==='00:00'">12:00</option>
-							</select>
-
-						<select name="extra_vars7" style="float:left; width: 30%; height: 50px;letter-spacing: 8px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
-								<option class="PM" value="PM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='PM'">PM</option>
-								<option class="AM" value="AM" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Day2')==='AM'">AM</option>
-						</select>
-					</div>
-
-					<span class="textFont textTimeGuide">입력하지 않으면 하루종일이 기본으로 작성됩니다.</span>
-
-				</div>
-
+					$("#dateButtonYester").click(function() {
+						var text = "{date('Y-m-d',$yesterday)}";
+						$("#date").val(text);
+					});
+					$("#dateButtonTomorrow").click(function() {
+						var text = "{date('Y-m-d',$tomorrow)}";
+						$("#date").val(text);
+					});
+				</script>
 
 
 			</div>
 
+			<div class="writeBox BasicBox">
+				<div class="writeline">
 
+					<div class="writeName">
+						<center>
+							<span>장소</span>
+						</center>
+					</div>
 
+					<div class="writeInputBasic">
+						<input id="place" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="text" name="extra_vars3" cond="!$oDocument->getExtraEidValueHTML('What')" />
+						<input id="place" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="text" name="extra_vars3" value="{$oDocument->getExtraEidValue("What")}" cond="$oDocument->getExtraEidValueHTML('What')" />
+					</div>
 
-			<div class="writecContentCloseGround2">
-				<div class="areaHeader">
-					<i class="fas fa-circle"></i><i class="fas fa-circle checkCircle"></i><i class="fas fa-circle"></i>
+					</div>
 				</div>
-				<div class="areaContent">
-					<span class="textFont nameFont">약속상대</span>
-					<div style="float:left; width:100%; height:50px; border-bottom:1px solid #fff;">
-						<input id="peaple" placeholder=""  type="text" name="extra_vars2"  value="{$oDocument->getExtraEidValue("Who")}" cond="$oDocument->getExtraEidValueHTML('Who')" />
-						<input id="peaple" placeholder=""  type="text" name="extra_vars2" cond="!$oDocument->getExtraEidValueHTML('Who')" />
-					</div>
-					</div>
 
-					<div style="float: left; width:100%; padding: 0 30px 0 30px; padding-top:30px; margin-bottom:70px;">
-						<span class="textFont textTimeGuide">입력하지 않으면 혼자가 기본으로 작성됩니다.</span>
-					</div>
+				<div class="writeBox BasicBox">
+					<div class="writeline">
 
-					<div class="areaContent">
-						<span class="textFont nameFont">! 약속장소</span>
-						<div style="float:left; width:100%; height:50px; border-bottom:1px solid #fff;">
-							<input id="place" placeholder=""  type="text" name="extra_vars3" value="{$oDocument->getExtraEidValue("What")}" cond="$oDocument->getExtraEidValueHTML('What')" />
-							<input id="place" placeholder=""  type="text" name="extra_vars3" cond="!$oDocument->getExtraEidValueHTML('What')" />
+						<div class="writeName">
+							<center>
+								<span>함께</span>
+							</center>
 						</div>
+
+						<div class="writeInputBasic">
+							<input id="peaple" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="text" name="extra_vars2" cond="!$oDocument->getExtraEidValueHTML('Who')" />
+							<input id="peaple" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="text" name="extra_vars2" value="{$oDocument->getExtraEidValue("Who")}" cond="$oDocument->getExtraEidValueHTML('Who')" />
 						</div>
-						<div style="float: left; width:100%; padding: 0 30px 0 30px; padding-top:30px;">
-							<span class="textFont textTimeGuide">쉼표로 구분할 수 있습니다. ex) 스타벅스, 한강공원</span>
+
 						</div>
 					</div>
 
-					<div class="areaMemo-hide">
-						<input id="memo" placeholder="메모를 입력해주세요."  type="text" name="extra_vars11" value="{$oDocument->getExtraEidValue("memo")}" cond="$oDocument->getExtraEidValueHTML('memo')" />
-					</div>
 
-						<div class="writecContentCloseGround3">
-							<div class="areaHeader">
-								<i class="fas fa-circle checkCircle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i>
-							</div>
-							<div class="areaContent" style="">
-								<span class="textFont nameFont">지출금액</span>
-								<div style="float:left; width:100%; height:60px; border-bottom:1px solid #fff;">
-									<input id="money" placeholder="" type="number" pattern="[0-9]*" inputmode="numeric" name="extra_vars8"  value="{$oDocument->getExtraEidValue("Money")}" cond="$oDocument->getExtraEidValueHTML('Money')" />
-									<input id="money" placeholder="" type="number" pattern="[0-9]*" inputmode="numeric" name="extra_vars8" cond="!$oDocument->getExtraEidValueHTML('Money')" />
+					<div class="writeBox dateBox">
+						<div class="writeline">
+
+							<div class="writeName">
+								<center>
+									<span>지출</span>
+								</center>
 							</div>
 
+							<div class="writeInputBasic">
+								<input id="money" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="number"  pattern="[0-9]*" inputmode="numeric" name="extra_vars8" cond="!$oDocument->getExtraEidValueHTML('Money')" />
+								<input id="money" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#8C8C8C ; border-bottom:1px solid #BAB9BF; background:#f9f9f9;"  type="number"  pattern="[0-9]*" inputmode="numeric" name="extra_vars8" value="{$oDocument->getExtraEidValue("Money")}" cond="$oDocument->getExtraEidValueHTML('Money')" />
+							</div>
 
-
-								</div>
-								<div class="areaSubContent" style="margin-bottom:50px;">
-									<div>
-										<span class="textFont subDate" id="peaplePlusButton1">+ 100</span>
-										<span class="textFont subDate" id="peaplePlusButton2">+ 1,000</span>
-										<span class="textFont subDate" id="peaplePlusButton3">+ 10,000</span>
-										<span class="textFont subDate" id="peaplePlusButton4">+ 100,000</span>
-									</div>
-
-									<script>
-										$('#peaplePlusButton1').click(function() {
-										var n = $('#peaplePlusButton1').index(this);
-										var num = $("#money:eq(" + n + ")").val();
-										num = $("#money:eq(" + n + ")").val(num * 1 + 100);
-									});
-									$('#peaplePlusButton2').click(function() {
-										var n = $('#peaplePlusButton2').index(this);
-										var num = $("#money:eq(" + n + ")").val();
-										num = $("#money:eq(" + n + ")").val(num * 1 + 1000);
-									});
-									$('#peaplePlusButton3').click(function() {
-										var n = $('#peaplePlusButton3').index(this);
-										var num = $("#money:eq(" + n + ")").val();
-										num = $("#money:eq(" + n + ")").val(num * 1 + 10000);
-									});
-									$('#peaplePlusButton4').click(function() {
-										var n = $('#peaplePlusButton4').index(this);
-										var num = $("#money:eq(" + n + ")").val();
-										num = $("#money:eq(" + n + ")").val(num * 1 + 100000);
-									});
-								</script>
+							</div>
+							<div class="writeOption">
+								<div class="dateButton">
+									<span class="textFont subDate" id="peaplePlusButton1">+ 100</span>
+									<span class="textFont subDate" id="peaplePlusButton2">+ 1,000</span>
+									<span class="textFont subDate" id="peaplePlusButton3">+ 10,000</span>
 								</div>
 
-								<script>
-									document.onclick = function(e) {
-								    if (!e) e = window.event;
-								    var el = e.target || e.srcElement;
-								    if (el.type === "checkbox") {
-								        if (el.checked)
-								            el.nextSibling.className += " checked";
-								        else
-								            el.nextSibling.className = el.nextSibling.className.replace(/\bchecked\b/,"");
-								    }
-								};
-							</script>
-
-								<div class="areaContent" style="">
-									<span class="textFont nameFont">지출방법</span>
-									<select name="extra_vars9" style="float:left; width: 100%; height: 40px; margin-top: 20px;letter-spacing: 0px;  -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 1px solid #fff; border-radius: 0px; font-size: 10pt;  font-family:'Gothic A1', sans-serif;  color:#fff ;">
+								<select name="extra_vars9" style="width: 50px; height: 20px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px ; border-radius: 0px; font-size: 8pt;  font-weight: 900;  color:#8C8C8C ; background:#F2F2F2;">
+										<option value="">지출없음</option>
 										<option class="신용카드" value="신용카드" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Type')==='신용카드'">신용카드</option>
 										<option class="체크카드" value="체크카드" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Type')==='체크카드'">체크카드</option>
 										<option class="현금지출" value="현금지출" selected="selected"|cond="$oDocument->getExtraEidValueHTML('Type')==='현금지출'">현금지출</option>
 								</select>
+							</div>
+						</div>
+
+						<script>
+							$('#peaplePlusButton1').click(function() {
+								var n = $('#peaplePlusButton1').index(this);
+								var num = $("#money:eq(" + n + ")").val();
+								num = $("#money:eq(" + n + ")").val(num * 1 + 100);
+							});
+							$('#peaplePlusButton2').click(function() {
+								var n = $('#peaplePlusButton2').index(this);
+								var num = $("#money:eq(" + n + ")").val();
+								num = $("#money:eq(" + n + ")").val(num * 1 + 1000);
+							});
+							$('#peaplePlusButton3').click(function() {
+								var n = $('#peaplePlusButton3').index(this);
+								var num = $("#money:eq(" + n + ")").val();
+								num = $("#money:eq(" + n + ")").val(num * 1 + 10000);
+							});
+						</script>
+
+						<script type="text/javascript">
+							$(document).ready(function() {
+								$("#memoPlusButton").click(function() {
+									$(".memoButton-Off").delay(200).switchClass("memoButton-Off", "memoButton-On", 300, "easeInOutCubic");
+									$(".memoButton-On").switchClass("memoButton-On", "memoButton-Off", 300, "easeInOutCubic");
+
+									$(".memoBox-Off").switchClass("memoBox-Off", "memoBox-On", 200, "easeInOutCubic");
+									$(".memoBox-On").switchClass("memoBox-On", "memoBox-Off", 200, "easeInOutCubic");
+
+								});
+							});
+						</script>
+
+
+						<div class="writeBox BasicBox memoBox-Off" id="memoBox">
+							<div class="writeline">
+
+								<div class="writeName">
+									<center>
+										<span>메모</span>
+									</center>
 								</div>
-								<div style="float: left; width:100%; padding: 0 30px 0 30px; padding-top:30px;">
-									<input type="checkbox" id="import" name="extra_vars10" style="display: none;"  value="Y" cond="$oDocument->getExtraEidValueHTML('important')==='Y'" /><label for="import" class="textFont textTimeGuide">중요약속</label>
-									<span class=" textFont textTimeGuide" id="memoBtn"><i class="fas fa-sticky-note" style="margin-left:8px; padding-right:4px;"></i>추가메모</span>
+
+								<div class="writeInputBasic">
+									<input id="memo" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#000 ; border-bottom:1px solid #BAB9BF; background:#f8f8f8;"  type="text" name="extra_vars11" cond="!$oDocument->getExtraEidValueHTML('memo')" />
+									<input id="memo" style="width: 100%; margin-left:10px; height: 24px; letter-spacing: 2px; -webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px; border-radius: 0px; font-size: 10pt;  font-weight: 900;  color:#000 ; border-bottom:1px solid #BAB9BF; background:#f8f8f8;"  type="text" name="extra_vars11" value="{$oDocument->getExtraEidValue("memo")}" cond="$oDocument->getExtraEidValueHTML('memo')" />
+								</div>
+
 								</div>
 							</div>
+
+							<script>
+								document.onclick = function(e) {
+								if (!e) e = window.event;
+								var el = e.target || e.srcElement;
+								if (el.type === "checkbox") {
+									if (el.checked)
+										el.nextSibling.className += " checked";
+									else
+										el.nextSibling.className = el.nextSibling.className.replace(/\bchecked\b/, "");
+								}
+							};
+						</script>
+
+
+							<div class="writeBox BasicBox">
+								<div class="writeline">
+
+									<div class="writeName">
+										<center>
+											<span>부가기능</span>
+										</center>
+									</div>
+
+									<span class="optionButton memoButton-Off" id="memoPlusButton">추가메모</span>
+
+								</div>
+							</div>
+
+
+
 							<div class="wf-section wfs-editor" style="display:none;">
 								{$oDocument->getEditor()}
 							</div>
 
-
-
-
-
-
-							<div id="nextButton1" class="areaFooterRight" style="position:fixed; width:80%; height:70px; padding-top: 22px;background:#283593; bottom:0; left:20%; z-index:50;">
+							<div class="submitBox">
 								<center>
-									<span class="textFont" style="font-size: 20px; color:#c5cae9;	font-weight: 700;">다음</span>
-								</center>
+									<input type="submit" style="-webkit-appearance: none;  -moz-appearance: none; appearance: none;  border: 0px ; border-radius: 0px; " class="" value="작성완료">
+						</center>
 							</div>
-
-							<div id="nextButton2" class="areaFooterRight" style="position:fixed; display: none;width:80%; height:70px; padding-top: 22px;background:#283593; bottom:0; left:20%; z-index:50;">
-								<center>
-									<span class="textFont" style="font-size: 20px; color:#c5cae9;	font-weight: 700;">다음</span>
-								</center>
-							</div>
-
-
-							<div id="nextButton3" class="areaFooterRight " style="position:fixed; display: none;width:80%; height:70px; padding-top: 22px;background:#283593; bottom:0; left:20%; z-index:50;">
-								<center> <input type="submit" class="button complete" value="작성">
-							</center>
-
-							</div>
-
-							<div id="leftButton1" class="areaFooterLeft" style="position:fixed; width:20%; height:70px; padding-top: 18px;background:#3949ab; bottom:0; left:0; z-index:60;">
-								<center><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','yves','')}">
-								<span style="color:#9fa8da; font-size:16pt;"><i class="fas fa-minus"></i></span></a>
-								</center>
-							</div>
-
-							<div id="leftButton2" class="areaFooterLeft2" style="position:fixed; display: none; width:20%; height:70px; padding-top: 18px;background:#3949ab; bottom:0; left:0; z-index:50;">
-								<center>
-									<span style="color:#9fa8da; font-size:16pt;"><i class="fas fa-arrow-left"></i></span>
-								</center>
-							</div>
-
-							<div id="leftButton3" class="areaFooterLeft3" style="position:fixed; display: none; width:20%; height:70px; padding-top: 18px;background:#3949ab; bottom:0; left:0; z-index:50;">
-								<center>
-									<span style="color:#9fa8da; font-size:16pt;"><i class="fas fa-arrow-left"></i></span>
-								</center>
-							</div>
-
 
 	</form>
+
 </div>
 
 
 
-
 <style>
-	.areaMemo-hide {
-		position: fixed;
+	.AreaHead {
 		width: 100%;
-		height: 50px;
-		bottom: -50%;
-		right: 0;
-		padding: 5px 10px 5px 10px;
-		z-index: 0;
-	}
-
-	.areaMemo-on {
-		position: fixed;
-		width: 100%;
-		height: 50px;
-		bottom: 70px;
-		right: 0;
-		padding: 5px 10px 5px 10px;
-		z-index: 49;
-		background: #fff;
-	}
-
-	.areaHeader {
-		padding: 0 30px 0 30px;
-		;
-	}
-
-
-	.areaHeader i {
-		float: right;
-		margin: 0 2px 0 2px;
-		color: #3f51b5;
-		font-size: 6pt;
-	}
-
-	.checkCircle {
-		color: #fff !important;
-	}
-
-
-	.button {
-		background-color: #4CAF50;
-		/* Green */
-		border: none;
-		font-family: 'Gothic A1', sans-serif !important;
-		color: #c5cae9;
-		font-weight: 700;
-		padding: 0px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 20px;
-		margin-top: -12px;
-	}
-
-	.button1 {
-		background-color: #4CAF50;
-	}
-
-	/* Black */
-	.textTimeGuide {
-
-		font-size: 8pt;
-		color: #9fa8da;
-		font-weight: 200;
-	}
-
-	.areaTimeBox {
-		margin-top: 6px;
-		margin-bottom: 30px;
-		float: left;
-		width: 48%;
-		margin-right: 4%;
-		border-bottom: 1px solid #fff;
-	}
-
-	.areaTime {
-		float: left;
-		width: 100%;
-		padding: 60px 30px 0 30px;
+		height: 60px;
+		border-bottom: 1px solid #F2F2F2;
+		padding-top: 15px;
 
 	}
 
-	.areaSubContent {
-		float: left;
-		padding: 0 30px 0 30px;
-		margin-top: 40px;
+	.AreaHead span {
+		font-size: 16pt;
+		font-weight: 700 !important;
+		color: #3E3E40;
+		padding-left: 4%;
 	}
 
-	#memo {
-		font-size: 14pt !important;
-		background: #eee !important;
-		color: #333 !important;
-		width: 100% !important;
-		height: auto !important;
-		line-height: 30px !important;
-		-webkit-border-radus: 40px !important;
-		-moz-border-radius: 40px !important;
-		border-radius: 40px !important;
-		padding: 2px 20px 4px 20px !important;
-		vertical-align: middle !important;
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
 	}
 
+	input[type=text]:hover {
+		border-bottom: 1px solid #3E3E40 !important;
+	}
 
+	input[type=number]:hover {
+		border-bottom: 1px solid #3E3E40 !important;
 
-	#date,
-	#peaple,
-	#place,
-	#money {
-		width: 100%;
-		color: #fff;
-		font-size: 18pt;
-		vertical-align: middle;
-		padding-top: 14px;
-		letter-spacing: 2px;
 	}
 
 
-	.areaHeader {
-		height: 100px;
-		width: 100%;
-		padding-top: 50px;
-	}
-
-	.nameFont {
-		font-size: 14pt;
-		color: #9fa8da;
-		font-weight: 200;
-	}
-
-	.subDate {
-		font-size: 12pt;
-		color: #9fa8da;
-		font-weight: 200;
-		border: 1px solid #9fa8da;
-		padding: 4px 6px 2px 6px;
-		margin-right: 6px;
-	}
-
-	.areaContent {
-		padding: 0 30px 0 30px;
-	}
-
-	.dateButtonToday {
-		float: left;
-		width: 50%;
-		height: 50px;
-		background: #eee;
+	.writeBox {
+		width: 96%;
+		margin-left: 4%;
+		border-bottom: 1px solid #F2F2F2;
+		padding: 14px 10px 10px 10px;
 
 	}
 
-	.dateButtonToday span {
-		-webkit-border-radus: 40px;
-		-moz-border-radius: 40px;
-		border-radius: 40px;
-		font-size: 12pt;
-		padding: 2px 6px 0 6px;
-		background: #eee;
+	.dateBox {
+		height: 112px;
 	}
 
-	.dateButtonYester {
-		float: left;
-		width: 50%;
-		height: 50px;
-		background: #ddd;
-
+	.BasicBox {
+		height: 56px;
 	}
 
-	/* 글씨폰트 */
-	.textFont {
-		font-family: 'Gothic A1', sans-serif !important;
-	}
-
-	.writecContentMainGround1 {
-		position: fixed;
-		display: block;
-		width: 100%;
-		height: 100%;
-		background: #303f9f;
-	}
-
-	.writecContentOpenGround1 {
-		display: block;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 1;
-		z-index: 2;
-	}
-
-	.writecContentCloseGround1 {
-		display: none !important;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		z-index: 2;
-	}
-
-	.writecContentOpenGround2 {
-		display: block;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 1;
-		z-index: 2;
-	}
-
-	.writecContentCloseGround2 {
-		display: none;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		z-index: 2;
-	}
-
-	.writecContentOpenGround3 {
-		display: block;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 1;
-		z-index: 2;
-	}
-
-	.writecContentCloseGround3 {
-		display: none;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		z-index: 2;
-	}
-
-
-	@media screen and (max-width: 768px) {
-		.xefu-dropzone-message {
-			display: none !important;
-		}
-
-		.upload_info {
-			display: inline-block !important;
-			margin: 0 !important;
-			margin-left: 5px !important;
-		}
-	}
-
-
-	table {
-
-		border-right: 2px solid #fff;
-		border-collapse: collapse;
-	}
-
-	th,
-	td {
-		text-align: center;
-		vertical-align: middle;
-		;
-	}
-
-	input {
-		-webkit-appearance: none;
-		text-overflow: ellipsis;
-		background: none !important;
-		border: none;
-		outline: none;
-		display: block;
-		font-size: 14px;
-		font-weight: 300;
-
-		width: 200px;
+	.optionBox {
 		height: 54px;
-		padding: 8px 40px 8px 0;
-		line-height: 54px;
-
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		-webkit-transition: all .2s ease;
-		transition: all .2s ease;
 	}
 
-	input[type=checkbox]:not(:checked)+label {
-		opacity: 0.3;
-	}
-
-	input[type=checkbox]:not(:checked)+label::before {
-		display: inline-block;
-		font-style: normal;
-		font-variant: normal;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
-
-		font-family: "Font Awesome 5 Free";
-		font-weight: 900;
-		content: "\f111";
-		margin-right: 4px;
-	}
-
-	input[type=checkbox]:checked+label {
+	.submitBox {
+		position: fixed;
+		background: #3E3E40;
+		left: 0;
+		bottom: 0px;
+		width: 100%;
+		height: 50px;
+		padding: 6px;
 		opacity: 1;
+		z-index: 6000;
 	}
 
-	input[type=checkbox]:checked+label::before {
-		display: inline-block;
-		font-style: normal;
-		font-variant: normal;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
+	.submitBox input {
+		font-size: 16pt;
+		font-weight: 500 !important;
+		color: #F2F2F2;
+	}
 
-		font-family: "Font Awesome 5 Free";
-		font-weight: 900;
-		content: "\f058";
-		margin-right: 4px;
+	.delete {
+		float: right !important;
+	}
+
+	.writeName {
+		float: left;
+		width: 20%;
+		height: 26px;
+		-webkit-border-radus: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+	}
+
+	.writeName span {
+		color: #3E3E40;
+		font-size: 12pt;
+		font-height: 900;
+	}
+
+	.writeInput {
+		float: left;
+		width: 60%;
+		height: 26px;
+	}
+
+	.writeInputBasic {
+		float: left;
+		width: 80%;
+		height: 26px;
+		padding-right: 10px;
+
+	}
+
+	.writeButton {
+		float: right;
+		width: 20%;
+		height: 26px;
+		background: #555;
+	}
+
+	.writeOption {
+		float: right;
+		width: 80%;
+		padding-left: 10px;
+	}
+
+	.dateButton {
+		margin-top: 4px;
+		margin-bottom: 3px;
+		width: 100%;
+	}
+
+	.dateButton span {
+		padding: 0px 10px 0 10px;
+		border: 1px solid #BAB9BF;
+		color: #BAB9BF;
+		font-size: 8pt;
+		font-height: 500;
+		margin-right: 2px;
+	}
+
+	.optionButton {
+		float: right;
+		padding: 1px 10px 2px 10px;
+		border: 1px solid #D9D9D9;
+		color: #D9D9D9;
+		font-size: 10pt;
+		font-height: 900;
+		margin-right: 10px;
+	}
+
+	.memoButton-On {
+		color: #8C8C8C !important;
+		border: 1px solid #8C8C8C !important;
+
+	}
+
+	.memoBox-Off {
+		display: none;
 	}
 </style>
-
-<script src="assets/jscolor.js"></script>
-<load target="assets/js/spectrum.js" />

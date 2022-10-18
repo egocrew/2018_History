@@ -1,58 +1,191 @@
-<script>
-  function clearForm(myForm) {
+<script type="text/javascript">
+  $(function() {
+    $("#btMoney-On").on("click", function() {
+      $("div.infoBox-On").switchClass("infoBox-On", "infoBox-Off", 400, "easeInOutCubic");
+      $("div.moneyBox-Off").switchClass("moneyBox-Off", "moneyBox-On", 400, "easeInOutCubic");
+    });
+  });
+</script>
 
-	    var frm_elements = myForm.elements;
-	    for (i = 0; i < frm_elements.length; i++)
-	    {
-	        field_type = frm_elements[i].type.toLowerCase();
-	        switch (field_type)
-	        {
-	            case "text":
-	            case "password":
-	            case "textarea":
-	            case "hidden":
-	            frm_elements[i].value = "";break;
-	            case "radio":
-	            case "checkbox":
-	            if (frm_elements[i].checked)
-	                {frm_elements[i].checked = false;}break;
-	            case "select-one":
-	            case "select-multi":
-	                frm_elements[i].selectedIndex = -1;break;
-	            default:
-	                break;
-	        }
-	    }
+<div class="navigation">
+  <div class="When">
 
-	}
-	</script>
+    <span class="When-Set" id="When-SB">검색</span>
+
+    <!--@if($extra_vars2=="")-->
+    <!--@else-->
+    <span class="When-Set">
+      <svg width="8px" height="8px" id="icon" style="margin-right:4px;enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path style="fill:#ddd;" d="M10,8.445C11.19,7.752,12,6.477,12,5V4c0-2.209-1.791-4-4-4S4,1.791,4,4v1  c0,1.477,0.81,2.752,2,3.445v0.719C2.551,9.72,0,11.671,0,14v1c0,0.553,0.448,1,1,1h14c0.552,0,1-0.447,1-1v-1  c0-2.329-2.551-4.28-6-4.836V8.445z" id="User_1_x2C__Profile_2"/>
+    </svg>
+    {$extra_vars2}</span>
+    <!--@end-->
+
+    <!--@if($extra_vars3=="")-->
+    <!--@else-->
+
+    <span class="When-Set">
+      <svg width="8px" height="8px" id="icon" style="margin-right:4px;enable-background:new 0 0 12.145 16;" version="1.1" viewBox="0 0 12.145 16" width="12.145px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path style="fill:#ddd;" d="M6.072,0C2.719,0,0,2.719,0,6.072c0,4.29,4.363,8.579,5.692,9.787c0.207,0.188,0.553,0.188,0.76,0  c1.329-1.208,5.692-5.497,5.692-9.787C12.145,2.719,9.426,0,6.072,0z M6.072,9c-1.656,0-3-1.344-3-3s1.344-3,3-3s3,1.344,3,3  S7.729,9,6.072,9z" id="Location_Pin_1"/>
+      </svg>
+      {$extra_vars3}</span>
+    <!--@end-->
 
 
-<div class="searchGroundStage1" style="">
-  <div class="contentStage shadow1" style="height:390px; z-index:10; margin-top:4px; padding:25px; background:#fff;">
-    <span class="textFont" style="position:absolute; font-size:24pt; color:#e8eaf6"><i class="fas fa-search fa-fw"></i></span>
-    <span class="textFont" style="margin-left: 50px; font-size:16pt; color:#5c6bc0">검색</span><br />
-    <span class="textFont" style="margin-left: 50px; font-size:8pt; color:#9fa8da">원하는 조건만 입력해서 검색할 수 있습니다.</span>
-    <form id="myForm">
-      <span class="textSearchInput textFont">약속날짜</span>
-      <div class="areaSearchInput borderRound">
-        <input type="month" class="searchText textFont" name="input_date" id="input_date" value="{substr($extra_vars1,0,7)}" placeholder="" style="color:#5c6bc0;">
-		</div>
-        <span class="textSearchInput textFont">약속상대</span>
-        <div class="areaSearchInput borderRound">
-          <input type="text" class="searchText textFont" name="input_who" id="input_who" value="{$extra_vars2}" placeholder="" style="color:#5c6bc0;   padding-bottom: 16px;">
-			</div>
-          <span class="textSearchInput textFont">약속장소</span>
-          <div class="areaSearchInput borderRound">
-            <input type="text" class="searchText textFont" name="input_where" id="input_where" value="{$extra_vars3}" placeholder="" style="color:#5c6bc0;  padding-bottom: 16px;">
-				</div><br />
-            <div class="searchInputButton">
-              <input type="button" name="clear" value="지우기" class="textFont" onclick="clearForm(this.form);">
-				</div>
-              <div class="searchInputButton shadow1" style="width: 30%; margin-right: 0; background: #5c6bc0; color:#fff;">
-                <input type="button" class="searchButton xet_btn textFont" style="text-align: center;" name="inspecionar" id="inspecionar" value="찾기" onclick="location.href='https://owaw.net/?act=&vid=&mid=history&type=month&nav=1&extra_vars1=' + document.getElementById('input_date').value + '&extra_vars2=' + document.getElementById('input_who').value + '&extra_vars3=' + document.getElementById('input_where').value;">
-						</div>
-    </form>
   </div>
 
+
 </div>
+
+<style>
+  .navigation {
+    margin-top: 126px;
+  }
+
+  .viName {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #ededed;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 3px 6px 4px 6px;
+    color: #555;
+  }
+
+  .viTime {
+    float: right;
+    font-size: 14pt;
+    font-weight: 900 !important;
+    color: #333;
+  }
+
+  .When {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    height: 50px;
+    padding: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: #fff;
+    opacity: 0.8;
+    border-bottom: 1px solid #ddd;
+    z-index: 5000;
+  }
+
+  .When-LB {
+    float: left;
+    margin-right: 20px;
+    margin-top: 1px;
+  }
+
+  .When-LB-Off {
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+
+
+  }
+
+  .When-Set {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #000;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 6px 2px 6px;
+    color: #fff;
+    margin-right: 6px;
+  }
+
+  .When-Set-Off {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #000;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 6px 2px 6px;
+    color: #fff;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+
+  }
+
+  .When-Mt {
+    float: right;
+    font-size: 14pt;
+    font-weight: 900 !important;
+    color: #000;
+    margin-top: 1px;
+  }
+
+  .When-Mt-Off {
+    float: right;
+    font-size: 14pt;
+    font-weight: 900 !important;
+    color: #000;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+
+  }
+
+  .When-RB {
+    float: right;
+    margin-left: 20px;
+    margin-top: 1px;
+  }
+
+  .When-RB-Off {
+    float: right;
+    margin-left: 20px;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+  }
+
+  .icon {
+    fill: #000;
+  }
+
+
+  .When-SNB-Off {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #000;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 6px 2px 6px;
+    margin-right: 10pt;
+    color: #fff;
+    margin-top: -20px;
+    opacity: 0;
+  }
+
+  .When-SNB {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #000;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 6px 2px 6px;
+    color: #fff;
+    margin-right: 10pt;
+    opacity: 1;
+
+  }
+</style>
