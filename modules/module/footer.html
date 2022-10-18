@@ -1,0 +1,520 @@
+<script>
+  $(document).ready(function() {
+    $("#expenseSwitch").click(function() {
+      $("span.footer-sideArea-expense-off").switchClass("footer-sideArea-expense-off", "footer-sideArea-expense-on", 100, "easeInOutCubic");
+      $("span.footer-sideArea-expense-on").switchClass("footer-sideArea-expense-on", "footer-sideArea-expense-off", 100, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-Off").switchClass("footer-sideArea-reportButton-Off", "footer-sideArea-reportButton-On", 500, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-On").switchClass("footer-sideArea-reportButton-On", "footer-sideArea-reportButton-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-Full").switchClass("footer-sideArea-reportButton-Full", "footer-sideArea-reportButton-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-reportShow").switchClass("footer-sideArea-reportShow", "footer-sideArea-reportHide", 300, "easeInOutCubic");
+      $("span.textMoney").switchClass("textMoney", "textMoneyView", 500, "easeInOutCubic");
+      $("span.textMoneyView").switchClass("textMoneyView", "textMoney", 500, "easeInOutCubic");
+
+      $("div.backSwitch-On").switchClass("backSwitch-On", "backSwitch-Off", 100, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu1").switchClass("footer-sideArea-filter-menu1", "footer-sideArea-filter-menu1-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu2").switchClass("footer-sideArea-filter-menu2", "footer-sideArea-filter-menu2-Off", 400, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu3").switchClass("footer-sideArea-filter-menu3", "footer-sideArea-filter-menu3-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu4").switchClass("footer-sideArea-filter-menu4", "footer-sideArea-filter-menu4-Off", 200, "easeInOutCubic");
+
+      $("#reportSwitch").show("drop", {
+        direction: "down"
+      }, "fast");
+    });
+  });
+
+  $(document).ready(function() {
+    $("#filterSwitch").click(function() {
+      $("div.footer-sideArea-filter-menu1-Off").switchClass("footer-sideArea-filter-menu1-Off", "footer-sideArea-filter-menu1", 500, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu1").switchClass("footer-sideArea-filter-menu1", "footer-sideArea-filter-menu1-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu2-Off").switchClass("footer-sideArea-filter-menu2-Off", "footer-sideArea-filter-menu2", 400, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu2").switchClass("footer-sideArea-filter-menu2", "footer-sideArea-filter-menu2-Off", 400, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu3-Off").switchClass("footer-sideArea-filter-menu3-Off", "footer-sideArea-filter-menu3", 300, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu3").switchClass("footer-sideArea-filter-menu3", "footer-sideArea-filter-menu3-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu4-Off").switchClass("footer-sideArea-filter-menu4-Off", "footer-sideArea-filter-menu4", 200, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu4").switchClass("footer-sideArea-filter-menu4", "footer-sideArea-filter-menu4-Off", 200, "easeInOutCubic");
+      $("div.backSwitch-Off").switchClass("backSwitch-Off", "backSwitch-On", 100, "easeInOutCubic");
+      $("div.backSwitch-On").switchClass("backSwitch-On", "backSwitch-Off", 100, "easeInOutCubic");
+
+      $("span.footer-sideArea-expense-on").switchClass("footer-sideArea-expense-on", "footer-sideArea-expense-off", 100, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-On").switchClass("footer-sideArea-reportButton-On", "footer-sideArea-reportButton-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-Full").switchClass("footer-sideArea-reportButton-Full", "footer-sideArea-reportButton-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-reportShow").switchClass("footer-sideArea-reportShow", "footer-sideArea-reportHide", 300, "easeInOutCubic");
+      $("span.textMoneyView").switchClass("textMoneyView", "textMoney", 500, "easeInOutCubic");
+
+
+    });
+  });
+
+  $(document).ready(function() {
+    $("#reportSwitch").click(function() {
+      $("div.footer-sideArea-reportButton-On").switchClass("footer-sideArea-reportButton-On", "footer-sideArea-reportButton-Full", 300, "easeInOutCubic");
+      $("div.footer-sideArea-reportHide").switchClass("footer-sideArea-reportHide", "footer-sideArea-reportShow", 300, "easeInOutCubic");
+      $("div.backSwitch-Off").switchClass("backSwitch-Off", "backSwitch-On", 100, "easeInOutCubic");
+      $("#reportSwitch").hide("drop", {
+        direction: "down"
+      }, "fast");
+    });
+  });
+
+  $(document).ready(function() {
+    $("#backSwitch").click(function() {
+      $("div.backSwitch-On").switchClass("backSwitch-On", "backSwitch-Off", 100, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu1").switchClass("footer-sideArea-filter-menu1", "footer-sideArea-filter-menu1-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu2").switchClass("footer-sideArea-filter-menu2", "footer-sideArea-filter-menu2-Off", 400, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu3").switchClass("footer-sideArea-filter-menu3", "footer-sideArea-filter-menu3-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-filter-menu4").switchClass("footer-sideArea-filter-menu4", "footer-sideArea-filter-menu4-Off", 200, "easeInOutCubic");
+
+
+      $("span.footer-sideArea-expense-on").switchClass("footer-sideArea-expense-on", "footer-sideArea-expense-off", 100, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-On").switchClass("footer-sideArea-reportButton-On", "footer-sideArea-reportButton-Off", 500, "easeInOutCubic");
+      $("div.footer-sideArea-reportButton-Full").switchClass("footer-sideArea-reportButton-Full", "footer-sideArea-reportButton-Off", 300, "easeInOutCubic");
+      $("div.footer-sideArea-reportShow").switchClass("footer-sideArea-reportShow", "footer-sideArea-reportHide", 300, "easeInOutCubic");
+      $("span.textMoneyView").switchClass("textMoneyView", "textMoney", 500, "easeInOutCubic");
+
+      $("div.header-searchForm-On").switchClass("header-searchForm-On", "header-searchForm-Off", 500, "easeInOutCubic");
+
+      $("#reportSwitch").show("drop", {
+        direction: "down"
+      }, "fast");
+    });
+  });
+</script>
+
+{@ $pDate = date("Y-m-d",strtotime('Monday this week'))}
+
+
+<div id="footer">
+  <div class="footer-sideArea">
+    <center>
+      <!--@if($type=='days')-->
+      <span class="footer-sideArea-filter" id="filterSwitch">일별보기</span>
+      <!--@else if($type=='week')-->
+      <span class="footer-sideArea-filter" id="filterSwitch">주별보기</span>
+      <!--@else if($type=='month')-->
+      <!--@if($search=='1')-->
+      <span class="footer-sideArea-filter" id="filterSwitch">검색보기</span>
+      <!--@else-->
+      <span class="footer-sideArea-filter" id="filterSwitch">월별보기</span>
+      <!--@end-->
+      <!--@else if($type=='years')-->
+      <span class="footer-sideArea-filter" id="filterSwitch">년별보기</span>
+      <!--@else-->
+      <span class="footer-sideArea-filter" id="filterSwitch">일별보기</span>
+      <!--@end-->
+    </center>
+  </div>
+
+  <div class="footer-centerArea">
+    <center>
+      <a href="https://owaw.net/index.php?mid=history&act=dispBoardWrite">
+      <i class="fas fa-plus"></i></a>
+    </center>
+  </div>
+
+  <div class="footer-sideArea">
+    <center>
+      <span class="footer-sideArea-expense-off" id="expenseSwitch">지출보기</span>
+    </center>
+  </div>
+</div>
+
+
+<div class="footer-sideArea-filter-menu">
+  <center>
+    <div class="footer-sideArea-filter-menu1-Off">
+      <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y',time())}&nav=&type=years">
+      <span class="footer-sideArea-filter-backNumber">365</span>
+      <span>년별보기</span></a>
+    </div>
+    <div class="footer-sideArea-filter-menu2-Off">
+      <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y-m',time())}&nav=&type=month">
+      <span>월별보기</span></a>
+      <span class="footer-sideArea-filter-backNumber">31</span>
+    </div>
+    <div class="footer-sideArea-filter-menu3-Off">
+      <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date("Y-m-d",strtotime('Monday this week'))}&extra_vars1-2={date( "Y-m-d", strtotime( "$pDate +6 days" ) )}&nav=&type=week">
+      <span>주별보기</span></a>
+      <span class="footer-sideArea-filter-backNumber">7</span>
+    </div>
+    <div class="footer-sideArea-filter-menu4-Off">
+      <a href="https://owaw.net/?act=&vid=&mid=history&category=&extra_vars1={date('Y-m-d',time())}&nav=1&type=days">
+      <span>일별보기</span></a>
+      <span class="footer-sideArea-filter-backNumber">1</span>
+    </div>
+  </center>
+</div>
+
+<div class="footer-sideArea-reportButton-Off">
+  <center>
+    <i class="fas fa-envelope-open-text" id="reportSwitch"></i>
+  </center>
+  <div class="footer-sideArea-reportHide">
+    {@ $allMonthSum = $dataCard + $dataCheckCard + $dataCoin}
+    <div class="textFont" style="float:left; font-size:24pt;width:100%;">
+      <div class="textFont" style="float:left; width:100%;">
+        <!--@if($extra_vars1<>'')-->
+        <span class="textDay" style="color:#222;">{mb_substr($extra_vars1,0,4,'UTF-8')}년 {mb_substr($extra_vars1,5,2,'UTF-8')}월</span>
+        <!--@end-->
+        <span class="textTime">
+            <!--@if($countStory == "")-->
+            <!--@else--><span style="padding: 3px 6px 2px 6px; color:#999; background: #eee; -webkit-border-radus: 30px; -moz-border-radius: 30px; border-radius: 30px;">{$countStory}개의 스토리</span>
+        <!--@end-->
+        </span>
+        <span class="textMoney" style="position:relative; top:7px; color:#222;"><i class="fas fa-won-sign fa-fw"></i> {number_format($allMonthSum)}</span>
+        <br />
+        <!--@if($extra_vars2<>'')-->
+        <span class="textPeaple" style="color:#222; background:#eee;">{$extra_vars2}</span>
+        <!--@end-->
+        <!--@if($extra_vars3<>'')-->
+        <span class="textWhat" style="color:#222;">#{$extra_vars3}</span>
+        <!--@end-->
+      </div>
+
+      <div style="float:left; width:100%; height:5px; background:#eee; margin-bottom:16px; margin-top:16px;">
+        <div style="float:left; width:{round($dataCoin / $allMonthSum * 100)}%; height:5px; background:#cddc39;"></div>
+        <div style="float:left; width:{round($dataCheckCard / $allMonthSum * 100)}%; height:5px; background:#ffeb3b;"></div>
+        <div style="float:left; width:{round($dataCard / $allMonthSum * 100)}%; height:5px; background:#ffc107;"></div>
+
+      </div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-top:1px solid #eee; border-bottom:1px solid #f5f5f5; border-left:4px solid #ffc107;">
+        신용카드</div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:34%; height: 41px; border-top:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;">
+        {@ $credit_money = 0;}
+        {@ $credit_money = round($dataCard / $allMonthSum * 100)}
+
+        <!--@if(is_nan($credit_money))-->
+        {@ $credit_money = 0;}
+        <!--@end-->
+
+        {$credit_money}%
+      </div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-top:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;">
+        <i class="fas fa-won-sign fa-fw"></i> {number_format($dataCard)} </div>
+
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-bottom:1px solid #f5f5f5; border-left:4px solid #ffeb3b;">
+        체크카드</div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:34%; height: 41px; border-bottom:1px solid #f5f5f5;">
+        {@ $check_money = 0;}
+        {@ $check_money = round($dataCheckCard / $allMonthSum * 100)}
+
+        <!--@if(is_nan($check_money))-->
+        {@ $check_money = 0;}
+        <!--@end-->
+
+        {$check_money}%</div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-bottom:1px solid #f5f5f5;">
+        <i class="fas fa-won-sign fa-fw"></i> {number_format($dataCheckCard)} </div>
+
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-bottom:1px solid #f5f5f5; border-left:4px solid #cddc39;">
+        현금지출</div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:34%; height: 41px; border-bottom:1px solid #f5f5f5;">
+        {@ $coin_money = 0;}
+        {@ $coin_money = round($dataCoin / $allMonthSum * 100)}
+
+        <!--@if(is_nan($coin_money))-->
+        {@ $coin_money = 0;}
+        <!--@end-->
+
+        {$coin_money}%</div>
+      <div class="searchInfoLeft textFont" style="float:left; font-size:8pt; padding: 12px; padding-top:16px; width:33%; height: 41px; border-bottom:1px solid #f5f5f5;">
+        <i class="fas fa-won-sign fa-fw"></i> {number_format($dataCoin)} </div>
+    </div>
+  </div>
+</div>
+<div class="backSwitch-Off" id="backSwitch">
+
+</div>
+<style>
+  .backSwitch-On {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 500;
+    opacity: 0.8;
+    display: block;
+  }
+
+  .backSwitch-Off {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 500;
+    opacity: 0;
+    display: none;
+  }
+
+  #footer {
+    position: fixed;
+    bottom: 16px;
+    left: 0px;
+    width: 90%;
+    margin-left: 5%;
+    height: 50px;
+    background: #3f51b5;
+    z-index: 1000;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .footer-sideArea {
+    float: left;
+    width: 34%;
+  }
+
+  .footer-centerArea {
+    float: left;
+    width: 32%;
+    height: 50px;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    padding-top: 12px;
+  }
+
+  .footer-centerArea i {
+    color: #fff;
+    font-size: 20pt;
+
+  }
+
+  .footer-sideArea-reportHide {
+    display: none;
+  }
+
+  .footer-sideArea-reportShow {
+    display: block;
+  }
+
+  .footer-sideArea-reportButton-Off {
+    opacity: 0;
+    position: fixed;
+    right: 0px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+    margin-right: 5%;
+    padding-top: 14px;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    z-index: 800;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .footer-sideArea-reportButton-Off i {
+    color: #3f51b5;
+    font-size: 16pt;
+  }
+
+  .footer-sideArea-reportButton-Full {
+    position: fixed;
+    width: 90%;
+    left: 5%;
+    bottom: 76px;
+    margin-right: 5%;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    z-index: 800;
+    background: #fff;
+    padding: 20px 30px 20px 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .footer-sideArea-reportButton-On {
+    opacity: 1;
+    position: fixed;
+    right: 0px;
+    bottom: 76px;
+    width: 50px;
+    height: 50px;
+    margin-right: 5%;
+    padding-top: 14px;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    z-index: 800;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .footer-sideArea-reportButton-On i {
+    color: #3f51b5;
+    font-size: 16pt;
+  }
+
+  .footer-sideArea-filter-menu div {
+    position: fixed;
+    left: 0px;
+    width: 120px;
+    margin-left: 5%;
+    height: 50px;
+    padding-top: 14px;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    z-index: 800;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .footer-sideArea-filter-menu div span {
+    position: absolute !important;
+    margin-top: 5px;
+    left: 50px;
+    color: #3f51b5;
+    font-size: 10pt;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 700;
+    z-index: 20;
+  }
+
+  .footer-sideArea-filter-backNumber {
+    position: absolute !important;
+    left: 15px !important;
+    margin-top: -5px !important;
+    color: #e8eaf6 !important;
+    font-size: 30pt !important;
+    z-index: 10 !important;
+    opacity: 0.6;
+  }
+
+  .footer-sideArea-filter-menu1 {
+    bottom: 76px;
+    opacity: 1;
+  }
+
+  .footer-sideArea-filter-menu1-Off {
+    bottom: 16px;
+    opacity: 0;
+  }
+
+  .footer-sideArea-filter-menu2 {
+    bottom: 136px;
+    opacity: 1;
+  }
+
+  .footer-sideArea-filter-menu2-Off {
+    bottom: 16px;
+    opacity: 0;
+  }
+
+  .footer-sideArea-filter-menu3 {
+    bottom: 196px;
+    opacity: 1;
+  }
+
+  .footer-sideArea-filter-menu3-Off {
+    bottom: 16px;
+    opacity: 0;
+  }
+
+  .footer-sideArea-filter-menu4 {
+    bottom: 256px;
+    opacity: 1;
+  }
+
+  .footer-sideArea-filter-menu4-Off {
+    bottom: 16px;
+    opacity: 0;
+  }
+
+  .footer-sideArea-filter {
+    float: left;
+    color: #fff;
+    font-size: 10pt;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 19px;
+    -webkit-border-radus: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  .footer-sideArea-filter::before {
+    position: relative;
+    top: -0px;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #fff;
+    content: "\f160";
+    font-size: 10pt;
+    margin-right: 10px;
+  }
+
+  .footer-sideArea-expense-on {
+    float: right;
+    color: #fff;
+    font-size: 10pt;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 700;
+    margin-right: 20px;
+    margin-top: 19px;
+    -webkit-border-radus: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  .footer-sideArea-expense-on::after {
+    position: relative;
+    top: -0px;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #fff;
+    content: "\f205";
+    font-size: 10pt;
+    margin-left: 10px;
+  }
+
+  .footer-sideArea-expense-off {
+    float: right;
+    color: #fff;
+    font-size: 10pt;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 700;
+    margin-right: 20px;
+    margin-top: 19px;
+    -webkit-border-radus: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+  }
+
+  .footer-sideArea-expense-off::after {
+    position: relative;
+    top: -0px;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #fff;
+    content: "\f204";
+    font-size: 10pt;
+    margin-left: 10px;
+  }
+</style>

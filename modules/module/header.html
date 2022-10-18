@@ -1,0 +1,179 @@
+<script>
+  function clearForm(myForm) {
+
+	    var frm_elements = myForm.elements;
+	    for (i = 0; i < frm_elements.length; i++)
+	    {
+	        field_type = frm_elements[i].type.toLowerCase();
+	        switch (field_type)
+	        {
+	            case "text":
+	            case "password":
+	            case "textarea":
+	            case "hidden":
+	            frm_elements[i].value = "";break;
+	            case "radio":
+	            case "checkbox":
+	            if (frm_elements[i].checked)
+	                {frm_elements[i].checked = false;}break;
+	            case "select-one":
+	            case "select-multi":
+	                frm_elements[i].selectedIndex = -1;break;
+	            default:
+	                break;
+	        }
+	    }
+
+	}
+
+  $(document).ready(function() {
+    $("#searchSwitch").click(function() {
+      $("div.header-searchForm-Off").switchClass("header-searchForm-Off", "header-searchForm-On", 500, "easeInOutCubic");
+      $("div.header-searchForm-On").switchClass("header-searchForm-On", "header-searchForm-Off", 500, "easeInOutCubic");
+      $("div.backSwitch-Off").switchClass("backSwitch-Off", "backSwitch-On", 100, "easeInOutCubic");
+
+    });
+  });
+	</script>
+
+
+<div class="header-searchForm-Off">
+  <span class="textFont" style="position:absolute; font-size:24pt; color:#e8eaf6"><i class="fas fa-search fa-fw"></i></span>
+  <span class="textFont" style="margin-left: 50px; font-size:16pt; color:#5c6bc0">검색</span><br />
+  <span class="textFont" style="margin-left: 50px; font-size:8pt; color:#9fa8da">원하는 조건만 입력해서 검색할 수 있습니다.</span>
+  <form id="myForm">
+    <span class="textSearchInput textFont">약속날짜</span>
+    <div class="areaSearchInput borderRound">
+      <input type="month" class="searchText textFont" name="input_date" id="input_date" value="{substr($extra_vars1,0,7)}" placeholder="" style="color:#5c6bc0;">
+		</div>
+      <span class="textSearchInput textFont">약속상대</span>
+      <div class="areaSearchInput borderRound">
+        <input type="text" class="searchText textFont" name="input_who" id="input_who" value="{$extra_vars2}" placeholder="" style="color:#5c6bc0;   padding-bottom: 16px;">
+			</div>
+        <span class="textSearchInput textFont">약속장소</span>
+        <div class="areaSearchInput borderRound">
+          <input type="text" class="searchText textFont" name="input_where" id="input_where" value="{$extra_vars3}" placeholder="" style="color:#5c6bc0;  padding-bottom: 16px;">
+				</div><br />
+          <div class="searchInputButton">
+            <input type="button" name="clear" value="지우기" class="textFont" onclick="clearForm(this.form);">
+				</div>
+            <div class="searchInputButton shadow1" style="width: 30%; margin-right: 0; background: #5c6bc0; color:#fff;">
+              <input type="button" class="searchButton xet_btn textFont" style="text-align: center;" name="inspecionar" id="inspecionar" value="찾기" onclick="location.href='https://owaw.net/?act=&vid=&mid=history&type=month&nav=1&search=1&extra_vars1=' + document.getElementById('input_date').value + '&extra_vars2=' + document.getElementById('input_who').value + '&extra_vars3=' + document.getElementById('input_where').value;">
+						</div>
+  </form>
+</div>
+
+
+<div id="header">
+  <div class="header-logoArea">
+    <a href="https://owaw.net">
+    <span id="logo">HISTORY</span></a>
+  </div>
+
+  <div class="header-buttonArea">
+
+    <div class="header-searchArea">
+      <span class="fas fa-search fa-fw" id="searchSwitch"></span>
+    </div>
+
+    <!--@if(($logged_info->profile_image->src)=='')-->
+    <!--@else-->
+    <a href="https://owaw.net/index.php?act=dispMemberInfo">
+			<div class="header-profileArea">
+				<center>
+					<img class="headerProfileImage" src="{$logged_info->profile_image->src}" />
+				</center>
+			</div></a>
+    <!--@end-->
+
+
+  </div>
+</div>
+
+<style>
+  #header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 10px 5% 0 5%;
+    width: 100%;
+    height: 180px;
+    background: #303f9f;
+    z-index: 0;
+  }
+
+  .header-logoArea {
+    float: left;
+    width: 60%;
+    height: 50px;
+    padding-top: 20px;
+  }
+
+  .header-logoArea span {
+    color: #fff;
+    font-size: 20pt;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 700;
+  }
+
+  .header-buttonArea {
+    float: right;
+    width: 40%;
+    height: 50px;
+  }
+
+  .header-profileArea {
+    float: right;
+    width: 40px;
+    height: 60px;
+    padding-top: 10px;
+  }
+
+  .header-profileArea img {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radus: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+  }
+
+  .header-searchArea {
+    float: right;
+    width: 30px;
+    height: 50px;
+    padding-top: 18px;
+    margin-left: 10px;
+  }
+
+  .header-searchArea span {
+    font-size: 18pt;
+    color: #fff;
+  }
+
+  .header-searchForm-Off {
+    position: fixed;
+    width: 90%;
+    bottom: -100%;
+    margin-left: 5%;
+    padding: 30px 30px 20px 30px;
+    z-index: 1500;
+    background: #fff;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    opacity: 0;
+  }
+
+  .header-searchForm-On {
+    position: fixed;
+    width: 90%;
+    bottom: 16px;
+    margin-left: 5%;
+    padding: 30px 30px 20px 30px;
+    z-index: 1500;
+    background: #fff;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+</style>
