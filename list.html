@@ -1,12 +1,11 @@
 <include target="_config.html" />
+<link href="https://fonts.googleapis.com/css?family=Amita:700|Gothic+A1:600|Song+Myung" rel="stylesheet">
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-		(adsbygoogle = window.adsbygoogle || []).push({
-				 google_ad_client: "ca-pub-3898023920655242",
-				 enable_page_level_ads: true
-		});
-</script>
 
 <!--@if($is_logged)-->
 
@@ -14,27 +13,27 @@
 
 
 
-	<div class="absc list rs" style=" max-width:500px; margin:0 auto; ">
-		<!--@if($listStyle == "table")-->
-			<include target="modules/list-table.html" />
-		<!--@elseif($listStyle == "webzine" || $listStyle == "masonry")-->
-			<include target="modules/list-webzine.html" />
-		<!--@end-->
-	</div>
+<div class="absc list rs" style=" max-width:500px; margin:0 auto; ">
+	<!--@if($listStyle == "table")-->
+	<include target="modules/list-table.html" />
+	<!--@elseif($listStyle == "webzine" || $listStyle == "masonry")-->
+	<include target="modules/list-webzine.html" />
+	<!--@end-->
+</div>
 
 
 
-	<div cond="$mi->footer_text" class="rs">{$mi->footer_text}</div>
+<div cond="$mi->footer_text" class="rs">{$mi->footer_text}</div>
 
-	<div cond="$mi->license != 'sponsored'" class="absc copyright rs align-right">
-	</div>
-	<block cond="$mi->license == 'sponsored'">
-<!--
+<div cond="$mi->license != 'sponsored'" class="absc copyright rs align-right">
+</div>
+<block cond="$mi->license == 'sponsored'">
+	<!--
 < APLOSBOARD SPONSORED LICENSE >
 SPONSORED LICENSE 사용 목록은 rx.xianchoi.kr에서 확인할 수 있습니다.
 만약 등록된 도메인이 아닌데 이 문구가 보인다면 제보 바랍니다.
 -->
-	</block>
+</block>
 </div>
 
 <load target="assets/js/aplosboard.js" />
