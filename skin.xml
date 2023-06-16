@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
 	<title xml:lang="ko">History</title>
-	<description xml:lang="ko">History FOR JISU</description>
+	<description xml:lang="ko">약속 관리 노트</description>
 	<version>2.0.4</version>
 	<date>2018-2-12</date>
-	<author email_address="xian.choi@gmail.com" link="http://rx.xianchoi.kr">
-		<name xml:lang="ko">XIAN CHOI</name>
+	<author email_address="jisu@ego.so" link="https://jisulog.com/">
+		<name xml:lang="ko">JISU YANG</name>
 	</author>
 	<extra_vars>
 		<group>
@@ -503,18 +503,6 @@
 			<title xml:lang="ko">기타 설정</title>
 			<var name="etc_custom_css" type="textarea">
 				<title xml:lang="ko">사용자 정의 스타일 (모든 게시판에 일괄 적용하려면 게시판 스킨 폴더에 custom.css 혹은 custom.scss를 작성해 주세요)</title>
-			</var>
-		</group>
-		<group>
-			<title xml:lang="ko">라이선스</title>
-			<var name="license" type="select">
-				<title xml:lang="ko">라이선스 종류 (후원 라이선스로 변경하려면 rx.xianchoi.kr을 방문하여 후원 라이선스를 구입해야 합니다. 후원 라이선스로 변경시 게시판 하단의 카피라이트 문구가 사라집니다. 구입 없이 후원 라이선스 사용시, 즉 카피라이트 문구를 없앨 시 무료 라이선스 위반이며 법적인 책임을 물을 것입니다.)</title>
-				<options value="">
-					<title xml:lang="ko">무료 라이선스</title>
-				</options>
-				<options value="sponsored">
-					<title xml:lang="ko">후원 라이선스 (카피라이트 제거)</title>
-				</options>
 			</var>
 		</group>
 	</extra_vars>
