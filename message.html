@@ -1,0 +1,12 @@
+<include target="_config.html" />
+<script cond="!$is_logged">location.href="https://owaw.net/index.php?act=dispMemberLoginForm";</script>
+
+<div class="board-wrapper">
+	<div class="absc ab-message rs">
+		<h1>{$message}</h1>
+		<div class="ab-message-tool">
+			<a cond="!$is_logged" class="ab-btn ab-point-color" href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a>
+			<button class="ab-btn" type="button" onclick="history.back();">{$lang->cmd_back}</button>
+		</div>
+	</div>
+</div>

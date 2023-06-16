@@ -1,0 +1,51 @@
+<head>
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<load target="modules/module/css/style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300|Noto+Sans+KR:500|Noto+Sans+KR:700" rel="stylesheet">
+
+</head>
+
+<!--<include target="modules/module/header.html" />-->
+<include target="modules/module/footer.html" />
+
+
+
+
+<body>
+
+	<!--@if($view=='month')-->
+	<!--//월별보기-->
+	<include target="modules/module/list.html" />
+
+	<!--@elseif($view=='days')-->
+	<!--//일별보기-->
+	<include target="modules/module/list.html" />
+
+	<!--@elseif($view=='years')-->
+	<!--//년별보기-->
+	<include target="modules/module/list.html" />
+
+	<!--@elseif($view=='week')-->
+	<!--//주별보기-->
+	<include target="modules/module/list.html" />
+
+	<!--@elseif($view=='search')-->
+	<!--//검색결과보기-->
+	<include target="modules/module/list.html" />
+
+	<!--@else-->
+	<!--//메인보기-->
+	<include target="modules/module/main.html" />
+
+
+	<!--@end-->
+
+
+</body>
+
+
+<style>
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+</style>

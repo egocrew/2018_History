@@ -1,0 +1,20 @@
+<include target="_config.html" />
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300|Noto+Sans+KR:500|Noto+Sans+KR:900" rel="stylesheet">
+
+
+<!--@if($is_logged)-->
+
+
+<div class="absc list rs" style=" max-width:500px; margin:0 auto; ">
+	<!--@if($listStyle == "table")-->
+	<include target="modules/list-table.html" />
+	<!--@elseif($listStyle == "webzine" || $listStyle == "masonry")-->
+	<include target="modules/list-webzine.html" />
+	<!--@end-->
+</div>
+
+<!--@else-->
+
+<!--@end-->

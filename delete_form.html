@@ -1,0 +1,17 @@
+<include target="_config.html" />
+<br /><Br />
+<div class="board-wrapper" style="background:none;">
+  <div class="absc ab-message rs">
+    <h1 style=" font-family:'Noto Sans Korean'">정말 지우시겠어요?</h1>
+		<form id="del_doc" action="./" method="get" onsubmit="return procFilter(this, delete_document)" class="context_message">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="page" value="{$page}" />
+			<input type="hidden" name="document_srl" value="{$document_srl}" />
+			<div class="ab-message-tool">
+				<button type="submit" class="ab-btn" style="color:#220f46">지우기</button>
+				<button type="button" class="ab-btn" onclick="history.back()">돌아가기</button>
+			</div>
+		</form>
+  </div>
+
+</div>

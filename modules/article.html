@@ -1,0 +1,219 @@
+
+<link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Titillium+Web" rel="stylesheet">
+
+<Br />
+<div class="absc article" style="  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);background:linear-gradient(-180deg, #0a0724, #220f46);  -webkit-border-radus:10px; -moz-border-radius:10px; border-radius: 10px; max-width:500px; margin: 0 auto;"><center>
+<br /><span style="font-size:28pt; letter-spacing: 10px; font-family: 'Titillium Web', sans-serif; -webkit-border-radus: 30px; -moz-border-radius: 30px; border-radius: 30px; color:#fff;">
+		{substr($oDocument->getExtraEidValue('D1'),2,2)}.{substr($oDocument->getExtraEidValue('D1'),5,2)}.{substr($oDocument->getExtraEidValue('D1'),8,2)}</span>
+<br /><Br /><br />
+
+
+	<div style="height:120px; width:90%; max-width: 400px;">
+		<!--@if($oDocument->getExtraEidValue("M1")=='만남')-->
+		<div style="float:left; height:100px; width:50%; background:#FC6E51; border:4px solid #E9573F; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #FC6E51; border-left:none;">
+					<Br /><span style="color:#E9573F; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='장소')-->
+		<div style="float:left; height:100px; width:50%; background:#5d9cec; border:4px solid #4a89dc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #5d9cec; border-left:none;">
+					<Br /><span style="color:#4a89dc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='상태')-->
+		<div style="float:left; height:100px; width:50%; background:#ed5565; border:4px solid #da4453; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ed5565; border-left:none;">
+					<Br /><span style="color:#da4453; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='음악')-->
+		<div style="float:left; height:100px; width:50%; background:#a0d468; border:4px solid #8cc152; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #a0d468; border-left:none;">
+					<Br /><span style="color:#8cc152; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='음식')-->
+		<div style="float:left; height:100px; width:50%; background:#ffce54; border:4px solid #f6bb42; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ffce54; border-left:none;">
+					<Br /><span style="color:#f6bb42; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='의상')-->
+		<div style="float:left; height:100px; width:50%; background:#48cfad; border:4px solid #37bc9b; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #48cfad; border-left:none;">
+					<Br /><span style="color:#37bc9b; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='영화')-->
+		<div style="float:left; height:100px; width:50%; background:#4fc1e9; border:4px solid #3bafda; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #4fc1e9; border-left:none;">
+					<Br /><span style="color:#3bafda; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='문화')-->
+		<div style="float:left; height:100px; width:50%; background:#ac92ec; border:4px solid #967adc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ac92ec; border-left:none;">
+					<Br /><span style="color:#967adc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M1")=='서적')-->
+		<div style="float:left; height:100px; width:50%; background:#ec87c0; border:4px solid #d770ad; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" /></div>
+					<div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ec87c0; border-left:none;">
+					<Br /><span style="color:#d770ad; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M1")}</b></span><br />
+					<b>{$oDocument->getExtraEidValue("M1_1")}</b><br /></div>
+		<!--@else-->
+				{$oDocument->getExtraEidValue("M1")}
+				<!--@end-->
+	</div>
+	<div style="height:120px; width:90%; max-width: 400px; ">
+		<!--@if($oDocument->getExtraEidValue("M2")=='만남')-->
+		<div style="float:left; height:100px; width:50%; background:#FC6E51; border:4px solid #E9573F; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #FC6E51; border-left:none;">
+		      <Br /><span style="color:#E9573F; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='장소')-->
+		<div style="float:left; height:100px; width:50%; background:#5d9cec; border:4px solid #4a89dc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #5d9cec; border-left:none;">
+		      <Br /><span style="color:#4a89dc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='상태')-->
+		<div style="float:left; height:100px; width:50%; background:#ed5565; border:4px solid #da4453; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ed5565; border-left:none;">
+		      <Br /><span style="color:#da4453; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='음악')-->
+		<div style="float:left; height:100px; width:50%; background:#a0d468; border:4px solid #8cc152; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #a0d468; border-left:none;">
+		      <Br /><span style="color:#8cc152; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='음식')-->
+		<div style="float:left; height:100px; width:50%; background:#ffce54; border:4px solid #f6bb42; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ffce54; border-left:none;">
+		      <Br /><span style="color:#f6bb42; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='의상')-->
+		<div style="float:left; height:100px; width:50%; background:#48cfad; border:4px solid #37bc9b; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #48cfad; border-left:none;">
+		      <Br /><span style="color:#37bc9b; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='영화')-->
+		<div style="float:left; height:100px; width:50%; background:#4fc1e9; border:4px solid #3bafda; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #4fc1e9; border-left:none;">
+		      <Br /><span style="color:#3bafda; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='문화')-->
+		<div style="float:left; height:100px; width:50%; background:#ac92ec; border:4px solid #967adc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ac92ec; border-left:none;">
+		      <Br /><span style="color:#967adc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M2")=='서적')-->
+		<div style="float:left; height:100px; width:50%; background:#ec87c0; border:4px solid #d770ad; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ec87c0; border-left:none;">
+		      <Br /><span style="color:#d770ad; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M2")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M2_1")}</b><br /></div>
+		<!--@else-->
+		    {$oDocument->getExtraEidValue("M2")}
+		    <!--@end-->
+	</div>
+	<div style="height:120px; width:90%; max-width: 400px; ">
+		<!--@if($oDocument->getExtraEidValue("M3")=='만남')-->
+		<div style="float:left; height:100px; width:50%; background:#FC6E51; border:4px solid #E9573F; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #FC6E51; border-left:none;">
+		      <Br /><span style="color:#E9573F; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='장소')-->
+		<div style="float:left; height:100px; width:50%; background:#5d9cec; border:4px solid #4a89dc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #5d9cec; border-left:none;">
+		      <Br /><span style="color:#4a89dc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='상태')-->
+		<div style="float:left; height:100px; width:50%; background:#ed5565; border:4px solid #da4453; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ed5565; border-left:none;">
+		      <Br /><span style="color:#da4453; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='음악')-->
+		<div style="float:left; height:100px; width:50%; background:#a0d468; border:4px solid #8cc152; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #a0d468; border-left:none;">
+		      <Br /><span style="color:#8cc152; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='음식')-->
+		<div style="float:left; height:100px; width:50%; background:#ffce54; border:4px solid #f6bb42; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ffce54; border-left:none;">
+		      <Br /><span style="color:#f6bb42; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='의상')-->
+		<div style="float:left; height:100px; width:50%; background:#48cfad; border:4px solid #37bc9b; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #48cfad; border-left:none;">
+		      <Br /><span style="color:#37bc9b; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='영화')-->
+		<div style="float:left; height:100px; width:50%; background:#4fc1e9; border:4px solid #3bafda; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #4fc1e9; border-left:none;">
+		      <Br /><span style="color:#3bafda; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='문화')-->
+		<div style="float:left; height:100px; width:50%; background:#ac92ec; border:4px solid #967adc; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ac92ec; border-left:none;">
+		      <Br /><span style="color:#967adc; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else if($oDocument->getExtraEidValue("M3")=='서적')-->
+		<div style="float:left; height:100px; width:50%; background:#ec87c0; border:4px solid #d770ad; -webkit-border-radus:4px; -moz-border-radius:4px; border-radius: 4px;"><br />
+		<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" /></div>
+		      <div style="float:left; height:93px; width:50%; margin-top:4px; background:#fff; -webkit-border-radus: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; border:4px solid #ec87c0; border-left:none;">
+		      <Br /><span style="color:#d770ad; font-size:18px; font-family:'Noto Sans Korean';"><b>{$oDocument->getExtraEidValue("M3")}</b></span><br />
+		      <b>{$oDocument->getExtraEidValue("M3_1")}</b><br /></div>
+		<!--@else-->
+		    {$oDocument->getExtraEidValue("M3")}
+		    <!--@end-->
+	</div>
+<br />
+
+<a class="fas fa-pencil-alt" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','','yves','')}" style=" font-size:16pt; color:#fff; padding:6px; padding-left:10px; padding-right:10px;"></a>
+<a href="#" class="fas fa-star" onclick="doCallModuleAction('member','procMemberScrapDocument','{$oDocument->document_srl}');return false;" style=" font-size:16pt; color:#fff; padding:6px; padding-left:10px; padding-right:10px; margin-left:20px; margin-right:20px;"></a>
+<a class="fas fa-trash-alt" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','yves','')}" style=" font-size:16pt;  color:#fff; padding:6px; padding-left:10px; padding-right:10px;"></a>
+<br /><br /><br />
+</center>
+
+</div>
+
+
+<!--@if($oDocument->gettitle()=='#')-->
+<!--@else-->
+<br />
+<div style="width:100%; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);background:linear-gradient(-360deg, #0a0724, #220f46); -webkit-border-radus:10px; -moz-border-radius:10px; border-radius: 10px; max-width:500px; margin: 0 auto;">
+	<div style="padding:20px; letter-spacing: 4px; font-size:18px; font-family:'Noto Sans Korean'; color:#fff;"><b>{$oDocument->getTitle()}</b></div>
+
+</div>
+
+<!--@end-->
+	<div class="share-custom rs" cond="$mi->share_article_custom">
+		{$mi->share_article_custom}
+	</div>
+
+	<!-- 게시글 푸터 -->
+	{@ $tag_list = $oDocument->get('tag_list') }
+	<div class="article-tags rs" cond="$tag_list">
+		<!--@foreach($tag_list as $tag)-->
+			<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','')}" class="tag ab-point-bgcolor" rel="tag">{htmlspecialchars($tag)}</a>
+		<!--@end-->
+	</div>
+<br />

@@ -1,0 +1,172 @@
+<header>
+  <a href="https://owaw.net/index.php?mid=history&act=dispBoardWrite">
+  <img class="" src="https://owaw.net/files/attach/filebox/798/002/2798.svg" width="30" height="30">
+  </a>
+
+
+
+
+  <!--@if($j=='')-->
+  <!--//변수값이 없는 초기접속일경우-->
+
+
+
+  <!--@if($view=='month')-->
+  <!--//월별보기-->
+  <div class="Wh-Set">
+    {@ $date = date('Y-m-d',time())}
+
+    <span class="Wh-Bt">월</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년 m월")}</span>
+  </div>
+
+  <!--@elseif($view=='days')-->
+  <!--//일별보기-->
+  <div class="Wh-Set">
+    {@ $date = date('Y-m-d',time())}
+
+    <span class="Wh-Bt">일</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년 n월 d일")}
+      <!--@if(zdate(str_replace('-','',$date), "l")=="Monday")-->
+      월요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Tuesday")-->
+      화요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Wednesday")-->
+      수요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Thursday")-->
+      목요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Friday")-->
+      금요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Saturday")-->
+      토요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Sunday")-->
+      일요일
+      <!--@end-->
+    </span>
+  </div>
+
+  <!--@elseif($view=='years')-->
+  <!--//년별보기-->
+  <div class="Wh-Set">
+    {@ $date = date('Y-m-d',time())}
+
+    <span class="Wh-Bt">년</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년")}</span>
+  </div>
+
+  <!--@else-->
+  <!--//주별보기-->
+  <div class="Wh-Mt">
+    {@ $date = date("Y-m-d",strtotime('Monday this week'))}
+
+    <span class="Wh-Bt">주</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), 'Y년')} {zdate(str_replace('-','',$date), "n월")} {zdate(str_replace('-','',$date), 'd')}일 - {date( "d", strtotime( "$date +6 days" ) )}일</span>
+  </div>
+  <!--@end-->
+
+
+
+  <!--@else-->
+
+
+
+  <!--@if($view=='month')-->
+  <!--//월별보기-->
+  <div class="Wh-Set">
+    {@ $date = $extra_vars1}
+
+    <span class="Wh-Bt">월</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년 m월")}</span>
+  </div>
+
+  <!--@elseif($view=='days')-->
+  <!--//일별보기-->
+  <div class="Wh-Set">
+    {@ $date = $extra_vars1}
+
+    <span class="Wh-Bt">일</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년 n월 d일")}
+      <!--@if(zdate(str_replace('-','',$date), "l")=="Monday")-->
+      월요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Tuesday")-->
+      화요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Wednesday")-->
+      수요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Thursday")-->
+      목요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Friday")-->
+      금요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Saturday")-->
+      토요일
+      <!--@elseif(zdate(str_replace('-','',$date), "l")=="Sunday")-->
+      일요일
+      <!--@end-->
+    </span>
+  </div>
+
+  <!--@elseif($view=='years')-->
+  <!--//년별보기-->
+  <div class="Wh-Set">
+    {@ $date = $extra_vars1}
+
+    <span class="Wh-Bt">년</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), "Y년")}</span>
+  </div>
+
+  <!--@else-->
+  <!--//주별보기-->
+  <div class="Wh-Set">
+    {@ $date = $extra_vars1}
+
+    <span class="Wh-Bt">주</span>
+    <span class="Wh-Mt">{zdate(str_replace('-','',$date), 'Y년')} {zdate(str_replace('-','',$date), "n월")} {zdate(str_replace('-','',$date), 'd')}일 - {date( "d", strtotime( "$date +6 days" ) )}일</span>
+  </div>
+  <!--@end-->
+
+
+
+  <!--@end-->
+
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+
+  .Wh-Set {
+    margin: 5%;
+    width: 90%;
+    height: 50px;
+    padding: 15px;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: #e8eaf6;
+  }
+
+  .Wh-Bt {
+    float: left;
+    font-size: 8pt;
+    font-weight: 900 !important;
+    background: #7986cb;
+    -webkit-border-radus: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 3px 6px 4px 6px;
+    color: #fff;
+  }
+
+  .Wh-Mt {
+    float: right;
+    font-size: 14pt;
+    font-weight: 900 !important;
+    color: #333;
+  }
+</style>

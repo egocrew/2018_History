@@ -1,0 +1,246 @@
+{@
+
+$mi = $module_info;
+
+if($_COOKIE['ab_editor_type']) $mi->comment_write_type = $_COOKIE['ab_editor_type'];
+
+// Total Count
+$oDB = &DB::getInstance();
+$query = $oDB->_query('select count(*) as total from rx_documents where module_srl = '.$mi->module_srl);
+$article_count = $oDB->_fetch($query);
+
+if ($order_type == "desc"):
+	$order_type = "asc";
+	$order_icon = "down";
+else:
+	$order_type = "desc";
+	$order_icon = "up";
+endif;
+
+// Font Family
+if ($mi->fontfamily_import):
+	$FontFamilyImport = $mi->fontfamily_import;
+else:
+	$FontFamilyImport = "@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);";
+endif;
+
+if ($mi->fontfamily_list):
+	$FontFamilyList = $mi->fontfamily_list;
+else:
+	$FontFamilyList = "'Noto Sans KR', 'nanumbarungothic', 'nanumgothic'";
+endif;
+
+// Font Size
+if ($mi->fs_content_sm) $fs_content_sm = $mi->fs_content_sm; else $fs_content_sm = "13";
+if ($mi->fs_content_md) $fs_content_md = $mi->fs_content_md; else $fs_content_md = "14";
+if ($mi->fs_content_lg) $fs_content_lg = $mi->fs_content_lg; else $fs_content_lg = "15";
+
+if ($mi->fs_ui_sm) $fs_ui_sm = $mi->fs_ui_sm; else $fs_ui_sm = "13";
+if ($mi->fs_ui_md) $fs_ui_md = $mi->fs_ui_md; else $fs_ui_md = "14";
+if ($mi->fs_ui_lg) $fs_ui_lg = $mi->fs_ui_lg; else $fs_ui_lg = "15";
+
+// padding
+if ($mi->fs_pd_sm) $fs_pd_sm = $mi->fs_pd_sm; else $fs_pd_sm = "1em";
+if ($mi->fs_pd_md) $fs_pd_md = $mi->fs_pd_md; else $fs_pd_md = "1em";
+if ($mi->fs_pd_lg) $fs_pd_lg = $mi->fs_pd_lg; else $fs_pd_lg = "1em";
+
+// Board Title
+if ($mi->board_header_title == 'c') $Title = $mi->board_header_title_custom; else $Title = $mi->browser_title;
+if ($mi->board_header == '') $showHeader = false; else $showHeader = true;
+
+// Category
+if ($mi->table_category == '' && $mi->use_category=='Y')
+	$showCategory = true;
+else
+	$showCategory = false;
+
+$cate_list = array();
+$current_key = null;
+foreach ($category_list as $key=>$val) :
+	if (!$val->depth):
+		$cate_list[$key] = $val;
+		$cate_list[$key]->children = array();
+		$current_key = $key;
+	elseif ($current_key):
+		$cate_list[$current_key]->children[] = $val;
+	endif;
+endforeach;
+
+// List Style
+if ($mi->board_style == ''):
+	if (!Mobile::isMobileCheckByAgent())	$listStyle = "table";
+	else									$listStyle = "webzine";
+elseif ($mi->board_style == 'table'):
+	$listStyle = "table";
+elseif ($mi->board_style == 'webzine'):
+	$listStyle = "webzine";
+elseif ($mi->board_style == 'masonry'):
+	$listStyle = "masonry";
+endif;
+
+// List Icon
+if ($mi->list_icon == ''):
+	$showIcon = $showIconNotice = true;
+elseif ($mi->list_icon == 'notice'):
+	$showIcon = true;
+	$showIconNotice = false;
+else:
+	$showIcon = $showIconNotice = false;
+endif;
+
+// Webzine
+if ($mi->webzine_meta == ''):
+	$showArticleMeta = $showNoticeMeta = true;
+elseif ($mi->webzine_meta == 'notice'):
+	$showArticleMeta = true;
+	$showNoticeMeta = false;
+else:
+	$showArticleMeta = $showNoticeMeta = false;
+endif;
+
+if ($mi->webzine_summary_cut)
+	$summaryCut = $mi->webzine_summary_cut;
+else
+	$summaryCut = "100";
+
+// Masonry Styling
+if ($mi->masonry_style_margin)
+	$masonryStyleMargin = $mi->masonry_style_margin;
+else
+	$masonryStyleMargin = "";
+if ($mi->masonry_style_border)
+	$masonryStyleBorder = $mi->masonry_style_border;
+else
+	$masonryStyleBorder = "none";
+if ($mi->masonry_style_radius)
+	$masonryStyleRadius = $mi->masonry_style_radius;
+else
+	$masonryStyleRadius = "0";
+if ($mi->masonry_style_background)
+	$masonryStyleBackground = $mi->masonry_style_background;
+else
+	$masonryStyleBackground = "none";
+if ($mi->masonry_style_shadow)
+	$masonryStyleShadow = $mi->masonry_style_shadow;
+else
+	$masonryStyleShadow = "none";
+
+// Meta Date Type
+if (Mobile::isMobileCheckByAgent())
+	$dateType = "y.n.j";
+else
+	$dateType = "Y.m.d";
+
+// Array for Category Function
+$category_custom_temp = explode("\r\n",$mi->category_style_custom);
+for ($i=0; $i < count($category_custom_temp); $i++):
+	$temp = explode("|",$category_custom_temp[$i]);
+	$category_custom_list[$i] = $temp[0];
+	$category_custom_style[$i] = $temp[1];
+endfor;
+
+// Array for exVal Function
+$exval_custom_temp = explode("\r\n",$mi->exval_style_custom);
+for ($i=0; $i < count($exval_custom_temp); $i++):
+	$temp = explode("|",$exval_custom_temp[$i]);
+	$exval_custom_list[$i] = $temp[0];
+	$exval_custom_style[$i] = $temp[1];
+endfor;
+$exval_image_temp = explode("\r\n",$mi->exval_image);
+for ($i=0; $i < count($exval_image_temp); $i++):
+	$temp = explode("|",$exval_image_temp[$i]);
+	$exval_image_list[$i] = $temp[0];
+	$exval_image_url[$i] = $temp[1];
+	$exval_image_style[$i] = $temp[2];
+endfor;
+
+// Thumbnail Setting
+$thumbWidth = $mi->thumbnail_width;
+$thumbHeight = $mi->thumbnail_height;
+$thumbRatio = ($thumbHeight / $thumbWidth) * 100;
+if ($listStyle == 'masonry'):
+	if($mi->masonry_thumbnail_type)
+		$thumbType = $mi->masonry_thumbnail_type;
+	else
+		$thumbType = "ratio";
+	if ($mi->masonry_column_sm)
+		$masonryColumnSmall = $mi->masonry_column_sm;
+	else
+		$masonryColumnSmall = "2";
+	if ($mi->masonry_column_md)
+		$masonryColumnMedium = $mi->masonry_column_md;
+	else
+		$masonryColumnMedium = "3";
+	if ($mi->masonry_column_lg)
+		$masonryColumnLarge = $mi->masonry_column_lg;
+	else
+		$masonryColumnLarge = "4";
+
+	// Thumbnail Location
+	$thumbWhere = "top";
+
+	// Article Content
+	if ($mi->masonry_content == ''):
+		$showAricleContent = true;
+	else:
+		$showAricleContent = false;
+	endif;
+
+elseif ($listStyle == 'webzine'):
+	$thumbType = "crop";
+	$thumbWhere = $mi->webzine_thumbnail;
+	if($mi->webzine_thumbnail_width_sm)
+		$webzineThumbnailWidthSmall = $mi->webzine_thumbnail_width_sm;
+	else
+		$webzineThumbnailWidthSmall = "80";
+	if($mi->webzine_thumbnail_width_md)
+		$webzineThumbnailWidthMedium = $mi->webzine_thumbnail_width_md;
+	else
+		$webzineThumbnailWidthMedium = "120";
+	if($mi->webzine_thumbnail_width_lg)
+		$webzineThumbnailWidthLarge = $mi->webzine_thumbnail_width_lg;
+	else
+		$webzineThumbnailWidthLarge = "150";
+	$showAricleContent = true;
+endif;
+
+if ($mi->thumbnail_no_image)
+	$thumbNo = $mi->thumbnail_no_image;
+else
+	$thumbNo = "/modules/board/skins/aplos-v2/assets/images/image-no-thumbnail.svg";
+
+// Thumbnail Styling
+if ($mi->thumbnail_border):
+	$thumbStyle .= "border: ";
+	$thumbStyle .= $mi->thumbnail_border;
+	$thumbStyle .= ";";
+endif;
+if ($mi->thumbnail_radius):
+	$thumbStyle .= "border-radius: ";
+	$thumbStyle .= $mi->thumbnail_radius;
+	$thumbStyle .= ";";
+endif;
+if ($mi->thumbnail_ex_style):
+	$thumbStyle .= $mi->thumbnail_ex_style;
+endif;
+
+// Comment
+if ($mi->comment_form_location == ''):
+	$CommentWriteLoc = 'top';
+else:
+	$CommentWriteLoc = 'bottom';
+endif;
+}
+
+<include target="_lang.html" />
+<!--@if(defined('RX_VERSION'))-->
+<load target="assets/css/aplosboard.scss" />
+<!--@else-->
+<load target="assets/css/aplosboard.css" />
+<!--@end-->
+<load target="assets/css/fontawesome-all.css" />
+<load target="assets/css/spectrum.css" />
+<include target="_style.html" />
+
+<load target="custom.css" />
+<load target="custom.scss" />

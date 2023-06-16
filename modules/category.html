@@ -1,0 +1,34 @@
+{@
+  if ($mi->category_count == ''):
+    if ($grant->manager):
+      $category_count = true;
+    else:
+      $category_count = false;
+    endif;
+  elseif ($mi->category_count == 'y'):
+    $category_count = true;
+  else:
+    $category_count = false;
+  endif;
+}
+<ul class="lv-1">
+	<li class="ab-point-bbcolor-hover<!--@if(!$category)--> on ab-point-bbcolor<!--@end-->"><a class="ab-btn" href="{getUrl('category','','page','')}"><!--@if($mi->exval_search!='')-->{$lang->category}: <!--@end-->{$lang->total}<span cond="$category_count" class="ab-point-color" style="margin-left: 0.25em;"> {$article_count->total}</span></a></li><li class="ab-point-bbcolor-hover<!--@if(count($val->children))--> <!--@if(!Mobile::isMobileCheckByAgent())-->hover<!--@end--><!--@end--><!--@if($category==$val->category_srl)--> on ab-point-bbcolor<!--@end-->" loop="$cate_list=>$key,$val">
+    <a class="ab-btn" href="{getUrl(category,$val->category_srl,'document_srl','', 'page', '')}">{$val->title}<span cond="$category_count" class="ab-point-color" style="margin-left: 0.25em;"> {$val->document_count}</span></a><a cond="count($val->children)" class="ab-btn"><i class="fas fa-caret-down" aria-hidden="true"></i></a>
+		<div cond="count($val->children)" id="lv_2_box" class="lv2_{$val->category_srl}">
+			<ul class="lv-2">
+				<li loop="$val->children=>$idx,$item" class="<!--@if($category==$item->category_srl)-->on<!--@end-->"><a href="{getUrl(category,$item->category_srl,'document_srl','', 'page', '')}"><i class="fas fa-fw <!--@if($category==$item->category_srl)-->fa-angle-double-right ab-point-color<!--@else-->fa-angle-right<!--@end-->"></i> {$item->title}<span cond="$category_count" class="ab-point-color"> {$item->document_count}</span></a></li>
+			</ul>
+		</div>
+	</li>
+</ul>
+
+<script>
+$('.lv-1 > li').hover(
+  function () {
+    $(this).find('div').show();
+  }, function () {
+    $(this).find('div').hide();
+  }
+);
+$('.lv-2 > li.on').parents('li:first').addClass('ab-point-bbcolor');
+</script>

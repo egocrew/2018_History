@@ -1,0 +1,192 @@
+<table class="ab-table" style="">
+	<thead cond="$mi->table_head == ''">
+		<!-- Header -->
+		<tr>
+			<block loop="$list_config=>$key,$val">
+			<th scope="col" cond="$val->type=='no' && $val->idx==-1"><span>{$lang->no}</span></th>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<th scope="col" cond="!$mi->show_cate && $mi->use_category=='Y'"><span>{$lang->category}</span></th>
+			<th scope="col" class="title"><span><a href="{getUrl('sort_index','title','order_type',$order_type)}">{$lang->title}<i cond="$sort_index=='title'" class="fa fa-angle-{$order_icon}"></i></a></span></th>
+			</block>
+			<th scope="col" cond="$val->type=='nick_name' && $val->idx==-1" style="display: none;"|cond="!$grant->manager && ($mi->consultation == 'Y' && $mi->table_consultation_author == 'n')"><span>{$lang->writer}</span></th>
+			<th scope="col" cond="$val->type=='user_id' && $val->idx==-1" style="display: none;"|cond="!$grant->manager && ($mi->consultation == 'Y' && $mi->table_consultation_author == 'n')"><span>{$lang->user_id}</span></th>
+			<th scope="col" cond="$val->type=='user_name' && $val->idx==-1" style="display: none;"|cond="!$grant->manager && ($mi->consultation == 'Y' && $mi->table_consultation_author == 'n')"><span>{$lang->user_name}</span></th>
+			<th scope="col" cond="$val->type=='regdate' && $val->idx==-1"><span><a href="{getUrl('sort_index','regdate','order_type',$order_type)}">{$lang->date}<i cond="$sort_index=='regdate'" class="fa fa-angle-{$order_icon}"></i></a></span></th>
+			<th scope="col" cond="$val->type=='last_update' && $val->idx==-1"><span><a href="{getUrl('sort_index','last_update','order_type',$order_type)}">{$lang->last_update}<i cond="$sort_index=='last_update'" class="fa fa-angle-{$order_icon}"></i></a></span></th>
+			<th scope="col" cond="$val->type=='last_post' && $val->idx==-1"><span>{$lang->last_post}</span></th>
+			<th scope="col" cond="$val->type=='readed_count' && $val->idx==-1"><span><a href="{getUrl('sort_index','readed_count','order_type',$order_type)}">{$lang->readed_count}<i cond="$sort_index=='readed_count'" class="fa fa-angle-{$order_icon}"></i></a></span></th>
+			<th scope="col" cond="$val->type=='voted_count' && $val->idx==-1"><span><a href="{getUrl('sort_index','voted_count','order_type',$order_type)}">{$lang->voted_count}<i cond="$sort_index=='voted_count'" class="fa fa-angle-{$order_icon}"></i></a></span></th>
+			<th scope="col" cond="$val->idx!=-1"><span><a href="{getUrl('sort_index',$val->eid,'order_type',$order_type)}">{$val->name}</a></span></th>
+			</block>
+			<th scope="col" cond="$grant->manager"><span><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" title="Check All" /></span></th>
+		</tr>
+	</thead>
+	<tbody cond="!$document_list && !$notice_list">
+		<tr>
+			<td colspan="{count($list_config)+1}"|cond="!$grant->manager" colspan="{count($list_config)+2}"|cond="$grant->manager">{$lang->no_documents}</td>
+		</tr>
+	</tbody>
+	<tbody cond="$document_list || $notice_list" style="">
+		<!-- Notice -->
+		<tr class="notice <!--@if($document_srl==$document->document_srl)--> active<!--@end-->" loop="$notice_list=>$no,$document">
+			<block loop="$list_config=>$key,$val">
+			<td class="no" cond="$val->type=='no' && $val->idx==-1">
+				<block cond="$document_srl==$document->document_srl"><i class="fas fa-map-marker  ab-point-color"></i></block>
+				<block cond="$document_srl!=$document->document_srl">{$lang->notice}</block>
+			</td>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<td cond="$showCategory" class="category"><include target="fn_category.html" /></td>
+			<td class="title">
+				<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle($mi->list_title_cut)}</a><a cond="$document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment" class="commentNum ab-point-color" title="{$lang->comment}">{$document->getCommentCount()}</a><include cond="$showIconNotice" target="print_icon.html" />
+				<a class="link" href="{getUrl('document_srl',$document->document_srl,'cpage','')}"></a>
+			</td>
+			</block>
+			<td class="author" cond="$val->type=='nick_name' && $val->idx==-1"><span><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a></span></td>
+			<td class="author" cond="$val->type=='user_id' && $val->idx==-1"><span>{$document->getUserID()}</span></td>
+			<td class="author" cond="$val->type=='user_name' && $val->idx==-1"><span>{$document->getUserName()}</span></td>
+			<td class="date" cond="$val->type=='regdate' && $val->idx==-1" title="{getTimeGap($document->get('regdate'), "H:i")}">{$document->getRegdate('Y.m.d')}</td>
+			<td class="date last_update" cond="$val->type=='last_update' && $val->idx==-1">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td class="date last_post" cond="$val->type=='last_post' && $val->idx==-1">
+				<!--@if((int)($document->get('comment_count'))>0)-->
+					<a href="{getUrl('document_srl',$document->document_srl)}#{$document->document_srl}_comment" title="{getTimeGap($document->get('last_update'), "H:i")}">{zdate($document->get('last_update'),'Y.m.d')}<block cond="$document->getLastUpdater()"><br><small>(by {$document->getLastUpdater()})</small></block></a>
+				<!--@else-->
+
+				<!--@end-->
+			</td>
+			<td cond="$val->type=='readed_count' && $val->idx==-1">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td cond="$val->type=='voted_count' && $val->idx==-1">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td cond="$val->idx!=-1" class="exval">{$document->getExtraValueHTML($val->idx)}</td>
+			</block>
+			<td cond="$grant->manager" class="check"><input type="checkbox" name="cart" value="{$document->document_srl}" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+		<!-- Article -->
+		<tr loop="$document_list=>$no,$document" class="active"|cond="$document_srl==$document->document_srl" style="border:none;;"><center>
+
+
+				<td style="width:25%; "><br /><span style="font-size:28pt; letter-spacing: 2px; font-family:'Noto Sans Korean'; color:#555 ; "><b>
+				{substr($document->getExtraEidValue('D1'),8,2)}</b></span><br /><br />
+				<span style="font-size:12pt; border-top:2px solid #ddd; margin-right:4px; font-family:'Noto Sans Korean'; color:#eee;"><b>
+				{substr($document->getExtraEidValue('D1'),5,2)}</b></span><br /><br />
+				<span style="font-size:10pt; padding:8px; background:#fff; color:#7BD7F7; -webkit-border-radus: 50px; -moz-border-radius: 50px; border-radius: 50px; ;">
+					<b>카드보기</b>
+				</span>
+				<br /><br />
+
+			</center></td>
+				<td style="width:25%; background:#dcdcdc; -webkit-border-radus: 20px 0px 0px 20px; -moz-border-radius:20px 0px 0px 20px; border-radius: 20px 0px 0px 20px;">
+								<a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
+									<!--@if($document->getExtraEidValue("M1")=='만남')-->
+									<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='장소')-->
+									<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='상태')-->
+									<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='음악')-->
+									<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='음식')-->
+									<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='의상')-->
+									<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='영화')-->
+									<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='문화')-->
+									<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" />
+									<!--@else if($document->getExtraEidValue("M1")=='서적')-->
+									<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" />
+									<!--@else-->
+									{$document->getExtraEidValue("M1")}
+									<!--@end-->
+						</a><div style="DISPLAY: none;"><br />
+						<span style="padding:4px; padding-left:10px; padding-right:10px; color:#fff; background:#555; -webkit-border-radus: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+							{mb_substr(($document->getExtraEidValue("M1_1")), 0, 4,"utf-8")}</span>
+					</div>
+				</td>
+
+				<td style="width:25%;background:#ccc;">
+						<a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
+							<!--@if($document->getExtraEidValue("M2")=='만남')-->
+							<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='장소')-->
+							<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='상태')-->
+							<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='음악')-->
+							<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='음식')-->
+							<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='의상')-->
+							<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='영화')-->
+							<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='문화')-->
+							<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M2")=='서적')-->
+							<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" />
+							<!--@else-->
+				          {$document->getExtraEidValue("M2")}
+				          <!--@end-->
+				    </a><div style="DISPLAY: none"><br />
+						<span style="padding:4px; padding-left:10px; padding-right:10px; color:#fff; background:#555;  -webkit-border-radus: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+							{mb_substr(($document->getExtraEidValue("M2_1")), 0, 4,"utf-8")}</span>
+				  </div>
+				</td>
+
+				<td style="width:25%; background:#bbb; -webkit-border-radus: 0px 20px 20px 0px; -moz-border-radius:0px 20px 20px 0px; border-radius: 0px 20px 20px 0px;">
+						<a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
+							<!--@if($document->getExtraEidValue("M3")=='만남')-->
+							<img src="https://owaw.net/files/attach/filebox/231/231.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='장소')-->
+							<img src="https://owaw.net/files/attach/filebox/233/233.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='상태')-->
+							<img src="https://owaw.net/files/attach/filebox/234/234.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='음악')-->
+							<img src="https://owaw.net/files/attach/filebox/235/235.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='음식')-->
+							<img src="https://owaw.net/files/attach/filebox/236/236.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='의상')-->
+							<img src="https://owaw.net/files/attach/filebox/237/237.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='영화')-->
+							<img src="https://owaw.net/files/attach/filebox/238/238.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='문화')-->
+							<img src="https://owaw.net/files/attach/filebox/239/239.svg" width="50" />
+							<!--@else if($document->getExtraEidValue("M3")=='서적')-->
+							<img src="https://owaw.net/files/attach/filebox/232/232.svg" width="50" />
+							<!--@else-->
+				          {$document->getExtraEidValue("M3")}
+				          <!--@end-->
+				    </a><div style="DISPLAY: none"><br />
+						<span style="padding:4px; padding-left:10px; padding-right:10px; color:#fff; background:#555;  -webkit-border-radus: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+							{mb_substr(($document->getExtraEidValue("M3_1")), 0, 4,"utf-8")}</span>
+				  </div>
+				</td>
+			<block loop="$list_config=>$key,$val">
+			<td class="no" cond="$val->type=='no' && $val->idx==-1">
+				<block cond="$document_srl==$document->document_srl"><i class="fas fa-map-marker here-mark ab-point-color"></i></block>
+				<block cond="$document_srl!=$document->document_srl">{$no}</block>
+			</td>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<td cond="$showCategory" class="categoryTD"><include target="fn_category.html" /></td>
+			<td class="title">
+				<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}" style="font-size:12pt; letter-spacing: 1px; border:1px solid #ddd; -webkit-border-radus: 20px; -moz-border-radius: 20px; border-radius: 20px; padding:2dpx; padding-left:10px; padding-right:10px; font-family:'Noto Sans Korean';">카드</a><a cond="$document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment" class="commentNum ab-point-color" title="{$lang->comment}">{$document->getCommentCount()}</a><include cond="$showIcon" target="print_icon.html" />
+				<a class="link" href="{getUrl('document_srl',$document->document_srl,'cpage','')}"></a>
+			</td>
+			</block>
+			<td class="author" cond="$val->type=='nick_name' && $val->idx==-1" style="display: none;"|cond="!$grant->manager && ($mi->consultation == 'Y' && $mi->table_consultation_author == 'n')"><span><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a></span></td>
+			<td class="author" cond="$val->type=='user_id' && $val->idx==-1"><span>{$document->getUserID()}</span></td>
+			<td class="author" cond="$val->type=='user_name' && $val->idx==-1"><span>{$document->getUserName()}</span></td>
+			<td class="date" cond="$val->type=='regdate' && $val->idx==-1" title="{getTimeGap($document->get('regdate'), "H:i")}">{$document->getRegdate('Y.m.d')}</td>
+			<td class="date last_update" cond="$val->type=='last_update' && $val->idx==-1">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td class="date last_post" cond="$val->type=='last_post' && $val->idx==-1">
+				<!--@if((int)($document->get('comment_count'))>0)-->
+					<a href="{getUrl('document_srl',$document->document_srl)}#{$document->document_srl}_comment" title="{getTimeGap($document->get('last_update'), "H:i")}">{zdate($document->get('last_update'),'Y.m.d')}<block cond="$document->getLastUpdater()"><br><small>(by {$document->getLastUpdater()})</small></block></a>
+				<!--@else-->
+
+				<!--@end-->
+			</td>
+			<td cond="$val->type=='readed_count' && $val->idx==-1">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td cond="$val->type=='voted_count' && $val->idx==-1">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td cond="$val->idx!=-1" class="exval"><include target="fn_exval.html" /></td>
+			</block>
+		</tr>
+	</tbody>
+</table>
