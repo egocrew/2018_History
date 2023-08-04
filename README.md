@@ -20,15 +20,14 @@
 - 다가오는 주의 요약 약속 정보를 제공합니다.
 
 ## 기술 스택
-### 언어
-- PHP
-- JavaScript
-- HTML/CSS 
-### 프레임워크
-- [Rhymix](https://rhymix.org/)
-### 라이브러리
-- jQuery 
-
+- **언어**
+  - PHP
+  - JavaScript
+  - HTML/CSS
+- **프레임워크**
+  - [Rhymix](https://rhymix.org/)
+- **라이브러리**
+  - jQuery 
 
 ## 라이선스
 Copyright © 2018. [EGO CREW](https://ego.so/). All rights reserved.
